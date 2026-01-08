@@ -1,6 +1,5 @@
 # PGxSystem – Precision Medicine Support Platform  
 
-Plus Ultra Team  
 
 ---
 
