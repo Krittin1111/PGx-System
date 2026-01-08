@@ -1,0 +1,1388 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*{
+  box-sizing:border-box}
+    html,body{height:10%}
+    body{
+      margin:0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", Arial, sans-serif;
+      background: #ECF5FD;
+      color: var(--ink);
+    }
+
+/* กรอบเมนู */
+
+:root {
+  --bg: #ECF5FD;
+  --card: #ffffff;
+  --primary-hover: #7488FC;
+  --text-light: #898989;
+  --radius: 14px;
+}
+
+aside {
+  position: fixed;          /* ✅ Fix navbar to stay in place */
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background-color: #fff;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 25px;
+  font-size: 18px;
+  box-shadow: 6px 0 15px rgba(127, 148, 255, 0.3);
+  overflow-y: auto;         /* ✅ Allow scrolling if menu is too long */
+  z-index: 100;            /* ✅ Keep navbar above other content */
+}
+
+aside .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;            
+  font-weight: 700;
+  font-size: 30px;
+  margin-left: -35px;
+  font-family: "Kanit", sans-serif;
+  color: #0f1222;
+}
+aside .logo {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;           
+}
+
+aside nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 20px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Active state - current page highlight */
+aside nav a.active {
+  background: linear-gradient(90deg, #9DAEFF, #7488FC);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(79, 124, 255, 0.3);
+  transform: translateX(4px);
+}
+
+/* Hover effect */
+aside nav a:hover {
+  background-color: var(--primary-hover);
+  color: white;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(116, 136, 252, 0.2);
+}
+
+/* Special hover effect for non-active items */
+aside nav a:not(.active):hover {
+  background: linear-gradient(90deg, rgba(157, 174, 255, 0.8), rgba(116, 136, 252, 0.8));
+}
+
+/* Active item hover - slightly different effect */
+aside nav a.active:hover {
+  background: linear-gradient(90deg, #7488FC, #5A6CE6);
+  box-shadow: 0 6px 12px rgba(79, 124, 255, 0.4);
+}
+
+/* Logout button special styling */
+aside nav a[data-translate="nav-logout"]:hover {
+  background: linear-gradient(90deg, #ff6b6b, #ee5a52) !important;
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+}
+
+aside nav a[data-translate="nav-logout"]:active {
+  transform: translateX(2px) scale(0.98);
+}
+
+/*หัวDashboard */
+
+main {
+  margin-left: 280px;       /* ✅ Account for fixed sidebar width */
+  margin-top: 80px;         /* ✅ Account for fixed header height */
+  padding: 25px;
+  width: calc(100vw - 280px);
+  box-sizing: border-box;
+}
+
+.app {
+  display: block;           /* ✅ Change from grid since sidebar is now fixed */
+  overflow-x: hidden;       /* ✅ Prevent horizontal scrolling */
+}
+
+header {
+  position: fixed;          /* ✅ Make header fixed to top */
+  top: 0;
+  left: 280px;             /* ✅ Start after sidebar */
+  width: calc(100vw - 280px); /* ✅ Take remaining width */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ECF5FD;
+  padding: 15px 25px;      /* ✅ Add horizontal padding */
+  z-index: 90;             /* ✅ Above content but below navbar */
+  border-bottom: 1px solid rgba(116, 136, 252, 0.1);
+  box-sizing: border-box;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7488FC, #cccede);
+  -webkit-background-clip: text;
+  background-clip: text;              /* ✅ Add standard property */
+  -webkit-text-fill-color: transparent;
+}
+
+/* Header Controls Container */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;                          /* ✅ Space between elements */
+}
+
+/* Adjust userbox since icon is now separate */
+.userbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2B395E;
+  padding: 8px 15px;                  /* ✅ Adjust padding since no icon */
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(241, 238, 238, 0.08);
+}
+
+/* กล่องผู้ใช้ - Updated definition moved to header-controls section */
+
+.user-display {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  padding: 4px 8px;
+  background: transparent;
+}
+
+#userName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #f9f9f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Legacy input styles (keep for compatibility) */
+.userbox input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  min-width: 200px;
+  color: #f9f9f9;
+}
+.userbox input::placeholder {
+  color: #f9f9f9;
+}
+
+/* User Icon - now separate from userbox */
+.user-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #7488FC;  /* ✅ Add border like in design */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/*การเข้าถึงด่วน*/
+.section-title{
+  width: 200px;
+  height: 50px;
+  font-size: 25px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-top: 0px;
+  font-family: "Kanit", sans-serif;
+  left: 15px;
+}
+.user-icon-qr {
+  width: 350px;
+  height: 80px;
+  font-size: 14px; 
+  object-fit: cover;
+  margin-left: -20px;
+  cursor: pointer;              /* ✅ ทำให้กดได้ */
+  transform: scale(0.7);
+}
+.user-icon-qr:hover {
+  box-shadow: 0 0 8px rgba(116, 136, 252, 0.5);
+}
+.select {
+  padding: 10px 15px;               /* ✅ ระยะห่างภายใน */
+  border: 0.5px solid #000000;      
+  border-radius: 8px;               /* ✅ มุมโค้ง */
+  background-color: #ffffff;        /* ✅ พื้นหลังขาว */
+  color: #1a1a1a;                   /* ✅ ตัวหนังสือสีดำ */
+  font-size: 25px;
+  font-family: "Kanit", sans-serif; /* ✅ ฟอนต์ไทยสวย */
+  outline: none;
+  appearance: none;                 /* ✅ ซ่อนลูกศรมาตรฐาน */
+  cursor: default;                  /* ✅ ไม่เปลี่ยนเป็นมือ (เพราะเลือกไม่ได้) */
+  width: 750px;
+  height: 60px;
+  box-shadow: 0 2px 6px rgba(116, 136, 252, 0.15);
+  text-align: left;
+  margin-top: -75px;
+  position: relative;
+  left: 300px;                /* ✅ จัดข้อความให้อยู่กลาง */
+}
+.input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 350px;
+  height: 42px;
+  font-size: 15px;
+  font-family: "Kanit", sans-serif;
+  outline: none;
+  transition: 0.2s;
+  top: -50px;
+  position: relative;
+  left: 490px;
+}
+.input:focus {
+  border-color: #7488fc;
+  box-shadow: 0 0 5px rgba(116, 136, 252, 0.3);
+}
+
+.btn-search {
+  background-color: #2A3261;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  height: 42px;
+  font-size: 15px;
+  font-family: "Kanit", sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  top: -50px;  /* ✅ ยกขึ้นเล็กน้อยให้ตรงกับ input */
+  left: 470px;
+  margin-right: 10px; /* ✅ เว้นระยะห่างระหว่างปุ่ม */
+}
+
+.btn-search:hover {
+  background-color: #5a6ce6;
+}
+
+/* ปุ่มรายงานผล */
+.btn-report {
+  background-color: #fff;
+  border: 2px solid #2A3261;
+  color: #1B2452;
+  border-radius: 8px;
+  padding: 10px 20px;
+  height: 42px;
+  font-size: 15px;
+  font-family: "Kanit", sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  top: -50px;  /* ✅ ยกขึ้นเล็กน้อยให้ตรงกับ input */
+  left: 470px;
+}
+
+.btn-report:hover {
+  background-color: #7488fc;
+  color: #fff;
+}
+
+/*รายงานผล*/
+.status-section{
+  width: 200px;
+  height: 50px;
+  font-size: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-top: -25px;
+  font-family: "Kanit", sans-serif;
+}
+
+.status{
+  border-radius:14px; padding:14px; background:var(--bg-soft);
+  border:1px solid rgba(15,18,34,.06);
+  flex-direction: column-reverse;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 200px;
+  height: 70px; 
+}
+
+.status-grid {
+  display: flex;                /* ✅ เพิ่มบรรทัดนี้ให้เรียงแนวนอน */
+  
+  gap: 30px;                    /* ระยะห่างแต่ละกล่อง */
+  margin-top: 0px;
+}
+
+/* ตัวเลข */
+.status .k{
+  font-weight: 600;
+  margin-top: 2px;
+  color: #111;
+}
+/* ข้อความหัวข้อ */
+.status .t{
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1b2430;
+}
+
+/* ความสูงเท่ากัน + แนวตั้งสวยขึ้น */
+.status .t{ font-size: 14px; }
+.status .k{ font-size: 16px; }
+
+/* สีแต่ละสถานะ */
+.status.ok{
+  background: #A0FFAB;       /* อนุมัติแล้ว */
+}
+.status.wait{
+  background: #FFF7A5;       /* รออนุมัติแล้ว */
+}
+.status.warn{
+  background: #FFA4A4;       /* แดงอ่อน */
+}
+.status.pending{
+  background: #ffffff;       /* ขาว */
+}
+
+/* เอฟเฟกต์ตอนโฮเวอร์นิดๆ */
+.status:hover{
+  transform: translateY(-2px);
+  transition: .18s ease;
+  box-shadow: 6px 0 15px rgba(127, 148, 255, 0.3);
+}
+
+/*พื้นหลังสถานะผล*/
+.table-card {
+  background-color: #ffffff;          
+  border: 1px solid rgba(15, 18, 34, 0.08); 
+  border-radius: 18px;                
+  padding: 25px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25); /* ✅ เงาฟ้าอ่อน (ขวาล่าง) */
+  margin: 20px auto;                  /* ✅ จัดให้อยู่กลางและมีช่องว่างรอบกล่อง */
+  width: 500%;                         /* ✅ ความกว้าง (ปรับได้ตามต้องการ) */
+  height: 450px;
+  box-sizing: border-box;
+  height: auto;             /* ✅ ป้องกัน padding เกินขอบ */
+}
+.table-cards{
+  flex: 0 0 32%; 
+  background-color: #2A3261;
+  border: 1px solid rgba(15, 18, 34, 0.08);                 
+  padding: 20px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25);
+  width: 95%;
+  height: 300px;                         
+  margin: 20px auto;                  
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: auto;  
+}
+
+.table-cards table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Kanit", sans-serif;
+}
+.table-cards th,
+.table-cards td {
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+/*.table-cards tr:hover {
+  background-color: #f9fbff;
+}*/
+
+/*เปลี่ยนสี front*/
+.table-cards table th {
+  color: #ffffff;          /* ✅ เปลี่ยนสีฟอนต์ (กรมท่าเข้ม) */
+  font-weight: 700;        /* ✅ ทำให้ตัวหนา */
+  font-size: 16px;         /* ✅ ปรับขนาดฟอนต์ */
+  font-family: "Kanit", sans-serif; /* ✅ ฟอนต์ไทยสวย ๆ */
+  letter-spacing: 0.5px;   /* ✅ ระยะห่างตัวอักษรเล็กน้อย */
+}
+
+.table-cards table td {
+  color: #ffffff;          /* ✅ เปลี่ยนสีฟอนต์ (กรมท่าเข้ม) */
+  font-weight: 700;        /* ✅ ทำให้ตัวหนา */
+  font-size: 16px;         /* ✅ ปรับขนาดฟอนต์ */
+  font-family: "Kanit", sans-serif; /* ✅ ฟอนต์ไทยสวย ๆ */
+  letter-spacing: 0.5px;   /* ✅ ระยะห่างตัวอักษรเล็กน้อย */
+}
+
+/*แสดงสถานะผล*/
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3DDC84;  /* ✅ จุดสีเขียว */
+}
+
+/*แจ้งเตือน*/
+/*พื้นหลัง*/
+.widget {
+  flex: 0 0 32%; 
+  background-color: #ffffff;          
+  border: 1px solid rgba(15, 18, 34, 0.08); 
+  border-radius: 18px;                
+  padding: 25px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25); /* ✅ เงาฟ้าอ่อน (ขวาล่าง) */
+  margin: 20px;                  /* ✅ จัดให้อยู่กลางและมีช่องว่างรอบกล่อง */
+  width: 35%;                         /* ✅ ความกว้าง (ปรับได้ตามต้องการ) */
+  height: 450px;
+  box-sizing: border-box;             
+  float: right;
+  position: relative;
+  left: 400px;
+  align-items:flex-start;
+  position: relative;
+  top: -320px;
+  height: auto;     
+}
+
+.alert-block{
+  flex: 0 0 32%; 
+  background-color: #2A3261;
+  border: 1px solid rgba(15, 18, 34, 0.08);                 
+  padding: 70px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25);
+  width: 100%;                       
+  margin: 20px auto;                  
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  top: -30px;
+  justify-content: center;
+  font-size: 15px;
+  color: #ffffff;
+  height: auto;
+}
+
+.alert-title{
+  font-size: 12px;
+  font-weight: 700;
+  color: #fafafa;
+  margin-bottom: 5px;
+  text-align: left;  
+  align-items:center;
+  border-bottom:2px solid rgba(252, 252, 252, 0.922);
+  position: absolute;   /* ✅ ลอยในมุม */
+  top: 10px;            /* ✅ ห่างจากขอบบน 10px */
+  left: 14px;           /* ✅ ห่างจากขอบซ้าย 14px */
+  color: white;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.links a {
+  background-color: #ECF5FD;
+  color: #2B395E;
+  text-decoration: none;
+  padding: 15px 14px;
+  border-radius: 10px;
+  border: 1px solid #D1DBF9;
+  font-family: "Kanit", sans-serif;
+  font-size: 20px;
+  transition: 0.2s ease;
+  white-space: nowrap;     /* 🔹 ไม่ตัดคำกลางบรรทัด */
+  line-height: 3;
+}
+
+.links a:hover {
+  background-color: #9DAEFF;
+  color: white;
+  box-shadow: 0 3px 8px rgba(116, 136, 252, 0.4);
+}
+
+/*กล่องล่าง*/
+.standard-box {
+  background: #1E2A52;                 /* 🔹 พื้นหลังน้ำเงินเข้ม */
+  color: #ffffff;                     /* 🔹 ตัวอักษรสีขาว */
+  padding: 25px 40px;                 /* 🔹 ระยะภายใน */
+  border-radius: 0;                   /* 🔹 ไม่มีมุมโค้ง */
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1); /* 🔹 เงาอ่อนด้านบน */
+  width: 100%;                        /* ✅ เต็มความกว้างของหน้า */
+  box-sizing: border-box;
+  text-align: left;                   /* ✅ ตัวอักษรชิดซ้าย */
+  margin-top: 50px;
+  position: relative;
+   left: 0px;   
+}
+
+.standard-box strong {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.standard-box .desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #E3E8F5;                     /* 🔹 สีข้อความอ่อนลง */
+  margin: 0 0 10px;
+}
+
+.standard-box small {
+  font-size: 13px;
+  color: #C5CBE3;
+}
+
+/* Top Controls Container */
+.top-controls {
+    position: relative;     /* ✅ Change from absolute to relative */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Language Toggle Switch */
+.language-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.lang-switch {
+    position: relative;
+    display: flex;
+    background: white;
+    border: 2px solid #9DAEFF;
+    border-radius: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    width: 80px;
+    height: 40px;
+}
+
+.lang-switch:hover {
+    border-color: #7f94ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.lang-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    transition: color 0.3s ease;
+    z-index: 2;
+}
+
+.lang-option.active {
+    color: white;
+}
+
+.switch-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #9DAEFF 0%, #7f94ff 100%);
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.lang-switch.en .switch-slider {
+    transform: translateX(0%);
+}
+
+.lang-switch.th .switch-slider {
+    transform: translateX(100%);
+}
+
+/* Shutdown Button Styles */
+.shutdown-button {
+    display: flex;
+    align-items: center;
+}
+
+.shutdown-btn {
+    background: white;
+    border: 2px solid #ff4757;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: #ff4757;
+}
+
+.shutdown-btn:hover {
+    background: #ff4757;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+}
+
+.shutdown-btn:active {
+    transform: translateY(0px);
+}
+
+/* ===== BARCODE SCANNER MODAL STYLES ===== */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    animation: modalFadeIn 0.3s ease-out;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e5e5e5;
+    color: #005f9e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    color: #005f9e;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    color: #ff4757;
+    transform: scale(1.1);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.left-section h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.scan-box {
+    border: 2px solid #cfd6dd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background: #eef2f5;
+    min-height: 300px;
+    max-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.scan-box:hover {
+    background: #e0e6eb;
+    border-color: #a0b0bb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.scan-box:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.scan-box.scanning {
+    background: #d4edda;
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+}
+
+.scan-box.scanning .scan-placeholder p {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.scan-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.scan-placeholder img {
+    width: 90%;
+    opacity: 0.6;
+}
+
+.scan-placeholder p {
+    margin: 0;
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.camera-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
+
+.camera-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.camera-preview canvas {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.camera-preview .drawingBuffer {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.barcode-section {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.barcode-section h4 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.barcode-display {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.barcode-result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    font-family: 'Courier New', monospace;
+}
+
+/* Manual Input Section */
+.manual-input-section {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.manual-input-title {
+    margin: 10px 0 15px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+.manual-input-section .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.btn-search {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #212529;
+}
+
+.btn-search:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+.manual-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.manual-input input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.manual-input input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Right Section - Results Display */
+.result-section {
+    padding: 0;
+}
+
+.result-section p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.result-section .label {
+    font-weight: bold;
+    color: #444;
+}
+
+.result-section a {
+    color: #005fbb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.result-section a:hover {
+    text-decoration: underline;
+}
+
+.patient-status {
+    margin-left: 20px !important;
+    color: green;
+    font-size: 14px;
+}
+
+.find-patient-btn {
+    padding: 6px 18px;
+    border-radius: 6px;
+    border: 1px solid #3b7bbb;
+    background: white;
+    color: #3b7bbb;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.find-patient-btn:hover {
+    background: #3b7bbb;
+    color: white;
+}
+
+.btn-report {
+    /* margin-top: 25px; */
+    /* float: right; */
+    background: #8aa6c9;
+    border: none;
+    /* padding: 12px 30px; */
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-report:hover {
+    background: #7a96b9;
+    transform: translateY(-1px);
+}
+
+/* Loading Display */
+.loading-display {
+    text-align: center;
+    padding: 40px 25px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+/* Error Display */
+.error-display {
+    text-align: center;
+    padding: 40px 25px;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 16px;
+    line-height: 1.5;
+    background: #f8d7da;
+    border: 2px solid #f5c6cb;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .container {
+        width: 95%;
+        margin: 20px;
+        padding: 15px;
+    }
+    
+    .header {
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+    
+    .scan-box {
+        min-height: 200px;
+        padding: 15px;
+    }
+    
+    .manual-input {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .btn-report {
+        float: none;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #007bff;
+    font-size: 16px;
+}
+
+.detail-value-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.patient-note {
+    font-size: 12px;
+    color: #28a745;
+    font-style: italic;
+}
+
+.find-patient-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.find-patient-btn:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+/* Error Display */
+.error-display {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.error-icon {
+    font-size: 40px;
+}
+
+.error-text {
+    color: #dc3545;
+    font-size: 16px;
+    line-height: 1.6;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Loading Display */
+.loading-display {
+    text-align: center;
+    padding: 40px 25px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4285f4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+/* Manual Input Section */
+.manual-input-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.manual-barcode-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.manual-barcode-input:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.25);
+}
+
+.search-barcode-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #212529;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.search-barcode-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+/* Scanner Section */
+.scanner-section {
+    margin-bottom: 30px;
+}
+
+#camera-preview {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.scanner-controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.manual-input {
+    display: flex;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto 0;
+}
+
+#manualBarcodeInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#manualBarcodeInput:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Button Styles */
+.btn-scan {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+.btn-scan:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-primary, .btn-secondary, .btn-search {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.btn-search {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #212529;
+}
+
+.btn-search:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+/* Bottom Actions */
+.modal-bottom-actions {
+    text-align: center;
+    padding: 25px 30px;
+    border-top: 2px solid #f1f3f5;
+    background: #f8f9fa;
+    margin: 30px -30px -30px -30px;
+}
+
+.report-result-btn {
+    background: linear-gradient(135deg, #6c95eb 0%, #8db9f0 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(108, 149, 235, 0.3);
+}
+
+.report-result-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 149, 235, 0.4);
+}
+
+/* QR Icon Hover Effect */
+.user-icon-qr:hover {
+    /* transform: scale(1.05); */
+    transition: transform 0.2s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .barcode-modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .barcode-modal-header, .barcode-modal-body {
+        padding: 20px;
+    }
+    
+    .barcode-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .barcode-right-section {
+        border-left: none;
+        border-top: 2px solid #e9ecef;
+        padding-left: 0;
+        padding-top: 20px;
+    }
+    
+    .result-title {
+        margin: -20px -20px 20px -20px;
+    }
+    
+    .modal-bottom-actions {
+        margin: 20px -20px -20px -20px;
+        padding: 20px;
+    }
+}

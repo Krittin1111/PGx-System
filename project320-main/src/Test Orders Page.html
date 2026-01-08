@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="css/Test Orders Page.css" />
+</head>
+
+<body>
+  <div class="app">
+   <!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a href="Main.html" data-translate="nav-home">หน้าหลัก</a>
+        <a href="Register.html" data-translate="nav-register">ลงทะเบียนผู้ป่วย</a>
+        <a class="active" href="#" data-translate="nav-send-test">ส่งตรวจ</a>
+        <a href="Record Test Result.html" data-translate="nav-record-results">บันทึกผลการทดสอบ</a>
+        <a href="report.html" data-translate="nav-report">รายงานผล</a>
+        <a href="qc.html" data-translate="nav-quality">ควบคุมคุณภาพ</a>
+        <a href="Graph.html" data-translate="nav-statistics">รายงานสถิติ</a>
+        <a href="#" data-translate="nav-logout" id="logoutBtn">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title" data-translate="dashboard-title">PGX Dashboard</h1>
+        <div class="header-controls">
+          <div class="userbox">
+            <div class="user-display" id="userDisplay">
+              <span id="userName">Loading...</span>
+            </div>
+            <img src="Image/6522516.png" alt="User Icon" class="user-icon">
+          </div>
+          <div class="top-controls">
+            <!-- Language Toggle Switch -->
+            <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                <div class="lang-option left" data-lang="en">EN</div>
+                <div class="lang-option right active" data-lang="th">TH</div>
+                <div class="switch-slider"></div>
+              </div>
+            </div>
+
+            <!-- Shutdown Button -->
+            <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()"
+                title="Close Application">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Container -->
+      <div class="content-container">
+        <!-- Left Section - Table -->
+        <div class="left-section">
+          <div class="card table-card">
+            <h2 class="card-title">รายการตรวจที่รับเข้าแล้ว</h2>
+
+            <div class="list-tools">
+              <input type="search" class="input-search" placeholder="ค้นหา..." aria-label="ค้นหารายการ" />
+              <button class="btn-search">ค้นหา</button>
+            </div>
+
+            <div class="card-body">
+              <div class="table-wrap" role="region" aria-label="ตารางรายการส่งตรวจ" tabindex="0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>หมายเลขสั่งตรวจ</th>
+                      <th>รหัสผู้ป่วย (HN)</th>
+                      <th>ชนิดสิ่งส่งตรวจ</th>
+                      <th>สภาพสิ่งส่งตรวจ</th>
+                      <th>เวลา</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>400000X</td>
+                      <td>HN00123</td>
+                      <td>Blood/EDTA</td>
+                      <td>6</td>
+                      <td>09/00/MMM</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Section - Form -->
+        <div class="right-section">
+          <div class="card form-card">
+            <h2 class="card-title">กรอกการประเมินสิ่งส่งตรวจ</h2>
+
+            <div class="form-section">
+              <label class="form-label">กรอกหมายเลขสั่งตรวจ</label>
+              <input type="text" class="form-input" placeholder="กรอกหมายเลขสั่งตรวจ" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">ชนิดสิ่งส่งตรวจ</label>
+                <select class="form-select">
+                  <option>เลือก</option>
+                  <option>เลือด (EDTA)</option>
+                  <option>น้ำลาย</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">ปริมาณตัวอย่าง (mL / μL)</label>
+                <input type="text" class="form-input" placeholder="เช่น 2.0" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">ภาชนะ</label>
+                <input type="text" class="form-input" placeholder="เช่น EDTA tube" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">อุณหภูมิขณะรับเข้า</label>
+                <input type="text" class="form-input" placeholder="เช่น 2–8°C" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">สภาพสิ่งส่งตรวจ</label>
+                <input type="text" class="form-input" placeholder="เช่น ไม่มีการรั่วซึม" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">เวลาที่รับเข้า</label>
+                <input type="time" class="form-input" />
+              </div>
+            </div>
+
+            <div class="form-section">
+              <label class="form-label">หมายเหตุ / เพิ่มเติม</label>
+              <textarea class="form-textarea" placeholder="ระบุรายละเอียดเพิ่มเติม..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-success">บันทึกข้อมูล</button>
+              <button type="button" class="btn btn-reject">ปฏิเสธสิ่งส่งตรวจ</button>
+              <button type="button" class="btn btn-print">พิมพ์บาร์โค้ด</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </main>
+  </div>
+
+  <script src="js/Test Orders Page.js"></script>
+</body>
+
+</html>

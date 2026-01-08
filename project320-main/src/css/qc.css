@@ -1,0 +1,630 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*{
+  box-sizing:border-box}
+    html,body{height:10%}
+    body{
+      margin:0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", Arial, sans-serif; 
+      background: #ECF5FD;
+      color: var(--ink);
+    }
+
+/* กรอบเมนู */
+
+:root {
+  --bg: #ECF5FD;
+  --card: #ffffff;
+  --primary-hover: #7488FC;
+  --text-light: #898989;
+  --radius: 14px;
+}
+
+aside {
+  position: fixed;          /* ✅ Fix navbar to stay in place */
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background-color: #fff;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 25px;
+  font-size: 18px;
+  box-shadow: 6px 0 15px rgba(127, 148, 255, 0.3);
+  overflow-y: auto;         /* ✅ Allow scrolling if menu is too long */
+  z-index: 100;            /* ✅ Keep navbar above other content */
+}
+
+aside .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;            
+  font-weight: 700;
+  font-size: 30px;
+  margin-left: -35px;
+  font-family: "Kanit", sans-serif;
+  color: #0f1222;
+}
+aside .logo {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;           
+}
+
+aside nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 20px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Active state - current page highlight */
+aside nav a.active {
+  background: linear-gradient(90deg, #9DAEFF, #7488FC);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(79, 124, 255, 0.3);
+  transform: translateX(4px);
+}
+
+/* Hover effect */
+aside nav a:hover {
+  background-color: var(--primary-hover);
+  color: white;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(116, 136, 252, 0.2);
+}
+
+/* Special hover effect for non-active items */
+aside nav a:not(.active):hover {
+  background: linear-gradient(90deg, rgba(157, 174, 255, 0.8), rgba(116, 136, 252, 0.8));
+}
+
+/* Active item hover - slightly different effect */
+aside nav a.active:hover {
+  background: linear-gradient(90deg, #7488FC, #5A6CE6);
+  box-shadow: 0 6px 12px rgba(79, 124, 255, 0.4);
+}
+
+/* Logout button special styling */
+aside nav a[data-translate="nav-logout"]:hover {
+  background: linear-gradient(90deg, #ff6b6b, #ee5a52) !important;
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+}
+
+aside nav a[data-translate="nav-logout"]:active {
+  transform: translateX(2px) scale(0.98);
+}
+
+/*หัวDashboard */
+
+main {
+  margin-left: 280px;       /* ✅ Account for fixed sidebar width */
+  margin-top: 80px;         /* ✅ Account for fixed header height */
+  padding: 25px;
+  width: calc(100vw - 280px);
+  box-sizing: border-box;
+}
+
+.app {
+  display: block;           /* ✅ Change from grid since sidebar is now fixed */
+  overflow-x: hidden;       /* ✅ Prevent horizontal scrolling */
+}
+
+header {
+  position: fixed;          /* ✅ Make header fixed to top */
+  top: 0;
+  left: 280px;             /* ✅ Start after sidebar */
+  width: calc(100vw - 280px); /* ✅ Take remaining width */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ECF5FD;
+  padding: 15px 25px;      /* ✅ Add horizontal padding */
+  z-index: 90;             /* ✅ Above content but below navbar */
+  border-bottom: 1px solid rgba(116, 136, 252, 0.1);
+  box-sizing: border-box;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7488FC, #cccede);
+  -webkit-background-clip: text;
+  background-clip: text;              /* ✅ Add standard property */
+  -webkit-text-fill-color: transparent;  /* ✅ ทำให้เป็น gradient text */
+}
+
+/* Header Controls Container */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;                          /* ✅ Space between elements */
+}
+
+/* กล่องผู้ใช้ */
+.userbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2B395E;
+  padding: 8px 15px;                  /* ✅ Adjust padding */
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(241, 238, 238, 0.08);
+}
+
+.user-display {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  padding: 4px 8px;
+  background: transparent;
+}
+
+#userName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #f9f9f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Legacy input styles (keep for compatibility) */
+.userbox input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  min-width: 200px;
+  color: #f9f9f9;
+}
+.userbox input::placeholder {
+  color: #f9f9f9;
+}
+
+/* User Icon - now separate from userbox */
+.user-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #7488FC;  /* ✅ Add border like in design */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Top Controls Container */
+.top-controls {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+/* Language Toggle Switch */
+.language-toggle {
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    pointer-events: auto;
+}
+
+.lang-switch {
+    position: relative;
+    display: flex;
+    background: white;
+    border: 2px solid #9DAEFF;
+    border-radius: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    width: 80px;
+    height: 40px;
+    user-select: none;
+}
+
+.lang-switch:hover {
+    border-color: #7f94ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.lang-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    transition: color 0.3s ease;
+    z-index: 2;
+    cursor: pointer;
+    user-select: none;
+}
+
+.lang-option.active {
+    color: white;
+}
+
+.lang-option:hover {
+    color: #333;
+}
+
+.lang-option.active:hover {
+    color: white;
+}
+
+.switch-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #9DAEFF 0%, #7f94ff 100%);
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.lang-switch.en .switch-slider {
+    transform: translateX(0%);
+}
+
+.lang-switch.th .switch-slider {
+    transform: translateX(100%);
+}
+
+/* Shutdown Button Styles */
+.shutdown-button {
+    display: flex;
+    align-items: center;
+}
+
+.shutdown-btn {
+    background: white;
+    border: 2px solid #ff4757;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: #ff4757;
+}
+
+.shutdown-btn:hover {
+    background: #ff4757;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+}
+
+.shutdown-btn:active {
+    transform: translateY(0px);
+}
+
+/* ===== QC Section ===== */
+.qc-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.qc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.qc-header span {
+  font-weight: 600;
+}
+
+.btn {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.btn.iqc { background: #d6ebff; border-color: #aeb7ff; }
+.btn.eqc { background: #ffefef; border-color: #f2b5b5; }
+.btn.interlab { background: #e0d6ff; border-color: #bfc5ff; }
+
+.btn.iqc:hover { background: #c4d7e9; border-color: #aeb7ff; }
+.btn.eqc:hover { background: #ebdddd; border-color: #f2b5b5; }
+.btn.interlab:hover { background: #d2c9ef; border-color: #bfc5ff; }
+
+.qc-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid #d7deff;
+  border-bottom: 1px solid #d7deff;
+  margin-bottom: 10px;
+}
+
+.qc-filters select,
+.qc-filters input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 14px;
+}
+
+.qc-table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e8ecff;
+  font-size: 14px;
+}
+
+thead {
+  background: #eef3ff;
+  font-weight: 600;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.dot.iqc { background: #9c9c9c; }
+.dot.eqc { background: #ff9999; }
+.dot.inter { background: #7a8cff; }
+
+/* ========== Modal ========== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+/* กล่องเนื้อหา */
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  border-radius: 16px;
+  padding: 25px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ส่วนหัว */
+.modal-header {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-header.iqc {
+  background-color: #d6ebff; /* ฟ้าอ่อน */
+}
+
+.modal-header.eqc {
+  background-color: #ffd7e1; /* ชมพูอ่อน */
+}
+
+/* ปุ่มปิด */
+.close {
+  float: right;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #ff4d4d;
+}
+
+/* ฟอร์ม */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #0078ff;
+  outline: none;
+}
+
+/* ปุ่ม */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-buttons button:first-child {
+  background-color: #ccc;
+}
+
+.modal-buttons button:last-child {
+  background-color: #2f2f2f;
+  color: white;
+}
+
+.modal-buttons button:hover {
+  opacity: 0.9;
+}
+
+#addEQCModal input[type="file"]:focus {
+  border-color: #ff80a1;
+  background-color: #ffeef3;
+}
+
+#addIQCModal input[type="file"]:focus {
+  border-color: #5aaeff;
+  background-color: #e9f4ff;
+}
+
+/* ========== ปรับสไตล์ช่องเลือกไฟล์ ========== */
+input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Hover effect */
+input[type="file"]:hover {
+  border-color: #888;
+  background-color: #f2f2f2;
+}
+
+/* เมื่อโฟกัส (คลิกเลือกไฟล์) */
+input[type="file"]:focus {
+  border-color: #0078ff;
+  outline: none;
+  background-color: #eef6ff;
+}
+
+/* ซ่อน style ปุ่ม default ของ browser */
+input[type="file"]::file-selector-button {
+  background-color: #2f2f2f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+/* hover ปุ่มเลือกไฟล์ */
+input[type="file"]::file-selector-button:hover {
+  background-color: #444;
+}
+
+/* ส่วนหัวเฉพาะ Inter-Lab */
+.modal-header.interlab {
+  background-color: #e0d6ff; /* ม่วงอ่อน */
+  color: #2e2a4d;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX System — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/Admin.css" />
+  <script src="js/shared-translations.js"></script>
+</head>
+
+<!------------------------------------ Modal: สร้างผู้ใช้ใหม่ ---------------------------->
+<div id="createModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="dialog" role="document" tabindex="-1">
+    <div class="dialog-head">
+      <span data-translate="modal-create-title">สร้างผู้ใช้ใหม่</span>
+      <button class="icon-close" id="closeCreate">×</button>
+    </div>
+
+    <form class="dialog-body dialog-grid" id="createUserForm">
+      <label class="field fn">
+        <span data-translate="field-firstname">ชื่อผู้ใช้</span>
+        <input class="input" name="firstname" required>
+      </label>
+
+      <label class="field ln">
+        <span data-translate="field-lastname">นามสกุล</span>
+        <input class="input" name="lastname" required>
+      </label>
+
+      <label class="field role">
+        <span data-translate="field-role">บทบาท</span>
+        <div class="selectwrap">
+          <select class="select" name="role">
+            <option value="User" data-translate="role-user" selected>User</option>
+            <option value="Admin" data-translate="role-admin">Admin</option>
+          </select>
+          <span class="chev">▾</span>
+        </div>
+      </label>
+
+      <label class="field access">
+        <span data-translate="field-access">ระดับการเข้าถึง</span>
+        <select class="select" name="access">
+          <option value="Lab Assistant" data-translate="access-lab-assistant" selected>Lab Assistant</option>
+          <option value="Lab Manager" data-translate="access-lab-manager">Lab Manager</option>
+          <option value="Developer" data-translate="access-developer">Developer</option>
+        </select>
+      </label>
+
+      <label class="field email">
+        <span data-translate="field-email">อีเมล</span>
+        <input class="input" name="email" type="email" required>
+      </label>
+
+      <label class="field pass">
+        <span data-translate="field-password">รหัสผ่าน</span>
+        <input class="input" name="password" type="password" required minlength="6">
+      </label>
+
+      <label class="field confirm">
+        <span data-translate="field-confirm-password">ยืนยันรหัสผ่าน</span>
+        <input class="input" name="confirmPassword" type="password" required minlength="6">
+      </label>
+
+      <div class="dialog-actions">
+        <button type="button" class="btn-cancel" id="cancelCreate" data-translate="btn-cancel">ยกเลิก</button>
+        <button type="submit" class="btn-primary" data-translate="btn-create">สร้าง</button>
+      </div>
+    </form>
+
+  </div>
+</div> 
+
+<!------------------------------------ Modal: แก้ไขผู้ใช้ ---------------------------->
+<div id="editModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="dialog" role="document" tabindex="-1">
+    <div class="dialog-head">
+      <span data-translate="modal-edit-title">แก้ไขข้อมูลผู้ใช้</span>
+      <button class="icon-close" id="closeEdit">×</button>
+    </div>
+
+    <form class="dialog-body dialog-grid" id="editUserForm">
+      <input type="hidden" id="editUserId" name="userId">
+      
+      <label class="field fn">
+        <span data-translate="field-firstname">ชื่อผู้ใช้</span>
+        <input class="input" id="editFirstname" name="firstname" required>
+      </label>
+
+      <label class="field ln">
+        <span data-translate="field-lastname">นามสกุล</span>
+        <input class="input" id="editLastname" name="lastname" required>
+      </label>
+
+      <label class="field role">
+        <span data-translate="field-role">บทบาท</span>
+        <div class="selectwrap">
+          <select class="select" id="editRole" name="role">
+            <option value="User" data-translate="role-user">User</option>
+            <option value="Admin" data-translate="role-admin">Admin</option>
+          </select>
+          <span class="chev">▾</span>
+        </div>
+      </label>
+
+      <label class="field access">
+        <span data-translate="field-access">ระดับการเข้าถึง</span>
+        <select class="select" id="editAccess" name="access">
+          <option value="Lab Assistant" data-translate="access-lab-assistant">Lab Assistant</option>
+          <option value="Lab Manager" data-translate="access-lab-manager">Lab Manager</option>
+          <option value="Developer" data-translate="access-developer">Developer</option>
+        </select>
+      </label>
+
+      <label class="field email">
+        <span data-translate="field-email">อีเมล</span>
+        <input class="input" id="editEmail" name="email" type="email" required>
+      </label>
+
+      <label class="field pass">
+        <span data-translate="field-new-password">รหัสผ่านใหม่ (เว้นว่างหากไม่ต้องการเปลี่ยน)</span>
+        <input class="input" id="editPassword" name="password" type="password" minlength="6">
+      </label>
+
+      <label class="field confirm">
+        <span data-translate="field-confirm-new-password">ยืนยันรหัสผ่านใหม่</span>
+        <input class="input" id="editConfirmPassword" name="confirmPassword" type="password" minlength="6">
+      </label>
+
+      <div class="dialog-actions">
+        <button type="button" class="btn-delete" id="deleteUserBtn" data-translate="btn-delete">ลบผู้ใช้</button>
+        <div class="action-buttons-right">
+          <button type="button" class="btn-cancel" id="cancelEdit" data-translate="btn-cancel">ยกเลิก</button>
+          <button type="submit" class="btn-primary" data-translate="btn-save">บันทึก</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div> 
+
+
+
+<!------------------------------------ Modal: สร้างผู้ใช้ใหม่ ----------------------------->
+
+<body>
+  <!-- ✅ ต้องมี .app ครอบและมีแค่สองลูก: aside.sidebar และ main.main -->
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brand-text">PGx System</div>
+      </div>
+
+      <nav class="menu">
+        <a class="menu-item active" href="Admin.html" data-translate="user-list">รายชื่อผู้ใช้</a>
+        <a class="menu-item" href="Admin-Using the system.html" data-translate="system-usage">การใช้งานระบบ</a>
+        <a class="menu-item" href="Admin-General-settings.html" data-translate="activity-log">การตั้งค่าทั่วไป</a>
+        <a class="menu-item" href="#" data-translate="logout">ออกจากระบบ</a>
+      </nav>
+
+      <div class="access">Access : text</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1 class="title" data-translate="admin-title">แอดมิน</h1>
+        <div class="top-controls">
+          <!-- Language Toggle Switch -->
+          <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                  <div class="lang-option left" data-lang="en">EN</div>
+                  <div class="lang-option right active" data-lang="th">TH</div>
+                  <div class="switch-slider"></div>
+              </div>
+          </div>
+          
+          <!-- Shutdown Button -->
+          <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()" title="Close Application">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+              </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="frame">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <strong>PGX System ADMIN PAGE</strong>
+              <span class="sep">|</span>
+              <span>ตารางจัดการผู้ใช้งาน</span>
+            </div>
+
+          </div>
+
+          <div class="filters">
+            <label class="f">
+              <span data-translate="username">ชื่อผู้ใช้งาน</span>
+              <input class="input" type="text" placeholder="Value" />
+            </label>
+            <label class="f">
+              <span data-translate="role">บทบาท</span>
+              <div class="selectwrap">
+                <select class="select">
+                  <option value="" data-translate="all">ทั้งหมด</option>
+                  <option value="User" data-translate="role-user">User</option>
+                  <option value="Admin" data-translate="role-admin">Admin</option>
+                </select>
+                <span class="chev">▾</span>
+              </div>
+
+            </label>
+            <button class="btn-outline" id="openCreate" data-translate="create-account">สร้างบัญชีใหม่</button>
+
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-translate="table-name">ชื่อ</th>
+                  <th data-translate="table-email">อีเมล</th>
+                  <th data-translate="table-role">บทบาท</th>
+                  <th data-translate="table-access">ระดับการเข้าถึง</th>
+                  <th data-translate="table-register-date">วันที่ลงทะเบียน</th>
+                  <th data-translate="table-last-login">ใช้งานล่าสุด</th>
+                  <th class="center"></th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody">
+                <!-- User data will be loaded here dynamically -->
+                <tr id="loadingRow">
+                  <td colspan="7" style="text-align: center; padding: 20px;">
+                    <div class="loading-spinner">กำลังโหลดข้อมูล...</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Admin Panel JavaScript -->
+  <script src="js/admin.js"></script>
+
+</body>
+
+</html>

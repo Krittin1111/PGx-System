@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="css/Register.css" />
+</head>
+
+<body>
+  <div class="app">
+     <!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a href="Main.html" data-translate="nav-home">หน้าหลัก</a>
+        <a class="active" href="Main.html" data-translate="nav-register">ลงทะเบียนผู้ป่วย</a>
+        <a href="Test Orders Page.html" data-translate="nav-send-test">ส่งตรวจ</a>
+        <a href="Record Test Result.html" data-translate="nav-record-results">บันทึกผลการทดสอบ</a>
+        <a href="report.html" data-translate="nav-report">รายงานผล</a>
+        <a href="qc.html" data-translate="nav-quality">ควบคุมคุณภาพ</a>
+        <a href="Graph.html" data-translate="nav-statistics">รายงานสถิติ</a>
+        <a href="#" data-translate="nav-logout" id="logoutBtn">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title" data-translate="dashboard-title">PGX Dashboard</h1>
+        <div class="header-controls">
+          <div class="userbox">
+            <div class="user-display" id="userDisplay">
+              <span id="userName">Loading...</span>
+            </div>
+            <img src="Image/6522516.png" alt="User Icon" class="user-icon">
+          </div>
+          <div class="top-controls">
+            <!-- Language Toggle Switch -->
+            <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                <div class="lang-option left" data-lang="en">EN</div>
+                <div class="lang-option right active" data-lang="th">TH</div>
+                <div class="switch-slider"></div>
+              </div>
+            </div>
+
+            <!-- Shutdown Button -->
+            <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()"
+                title="Close Application">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== Registration Form ===== -->
+      <section class="section">
+        <h3 class="section-title" data-translate="register-title">กรอกข้อมูลคนไข้รายใหม่</h3>
+        
+        <form class="registration-form" action="#" method="post" autocomplete="on" novalidate>
+          
+          <!-- Row 1: ชื่อ - นามสกุล -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first_name" data-translate="firstname-label">ชื่อ</label>
+              <input id="first_name" name="first_name" type="text" placeholder="ชื่อ" data-translate-placeholder="firstname-placeholder" required />
+            </div>
+            <div class="form-group">
+              <label for="last_name" data-translate="lastname-label">นามสกุล</label>
+              <input id="last_name" name="last_name" type="text" placeholder="นามสกุล" data-translate-placeholder="lastname-placeholder" required />
+            </div>
+          </div>
+
+          <!-- Row 2: อายุ - เพศ -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age" data-translate="age-label">อายุ</label>
+              <input id="age" name="age" type="text" placeholder="อายุ" data-translate-placeholder="age-placeholder" />
+            </div>
+            <div class="form-group">
+              <label for="gender" data-translate="gender-label">เพศ</label>
+              <select id="gender" name="gender">
+                <option value="" data-translate="gender-select-placeholder">เลือกเพศ</option>
+                <option value="ชาย" data-translate="gender-male">ชาย</option>
+                <option value="หญิง" data-translate="gender-female">หญิง</option>
+                <option value="อื่น ๆ" data-translate="gender-other">อื่น ๆ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 3: เลขบัตรประชาชน -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="cid" data-translate="id-card-label">เลขบัตรประชาชน</label>
+              <input id="cid" name="cid" type="text" inputmode="numeric" maxlength="13" placeholder="เลข 13 หลัก" data-translate-placeholder="id-card-placeholder" />
+              <div id="cidCheckResult" class="cid-check-result"></div>
+            </div>
+          </div>
+
+          <!-- Row 4: หน่วยงานที่ส่งตรวจ -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="hospital" data-translate="hospital-label">หน่วยงานที่ส่งตรวจ</label>
+              <input id="hospital" name="hospital" type="text" placeholder="ชื่อโรงพยาบาล/หน่วยงาน" data-translate-placeholder="hospital-placeholder" />
+            </div>
+          </div>
+
+          <!-- Row 5: เชื้อชาติ - เบอร์ติดต่อผู้ป่วย -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ethnicity" data-translate="ethnicity-label">เชื้อชาติ</label>
+              <input id="ethnicity" name="ethnicity" type="text" placeholder="เช่น ไทย, จีน, มอญ" data-translate-placeholder="ethnicity-placeholder" />
+            </div>
+            <div class="form-group">
+              <label for="patient_phone" data-translate="patient-phone-label">เบอร์ติดต่อผู้ป่วย</label>
+              <input id="patient_phone" name="patient_phone" type="tel" inputmode="tel" placeholder="0XXXXXXXXX" data-translate-placeholder="phone-placeholder" />
+            </div>
+          </div>
+
+          <!-- Row 6: วันเกิด - น้ำหนัก - ส่วนสูง -->
+          <div class="form-row three-cols">
+            <div class="form-group">
+              <label for="date_of_birth" data-translate="birthdate-label">วันเกิด</label>
+              <input id="date_of_birth" name="date_of_birth" type="date" />
+            </div>
+            <div class="form-group">
+              <label for="weight" data-translate="weight-label">น้ำหนัก (กก.)</label>
+              <input id="weight" name="weight" type="number" step="0.1" placeholder="เช่น 65.5" data-translate-placeholder="weight-placeholder" />
+            </div>
+            <div class="form-group">
+              <label for="height" data-translate="height-label">ส่วนสูง (ซม.)</label>
+              <input id="height" name="height" type="number" step="0.1" placeholder="เช่น 170.5" data-translate-placeholder="height-placeholder" />
+            </div>
+          </div>
+
+          <!-- Row 7: แพทย์ - เบอร์ติดต่อแพทย์ -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="physician" data-translate="physician-label">แพทย์</label>
+              <input id="physician" name="physician" type="text" placeholder="ชื่อ-สกุลแพทย์ผู้ส่งตรวจ" data-translate-placeholder="physician-placeholder" />
+            </div>
+            <div class="form-group">
+              <label for="physician_phone" data-translate="physician-phone-label">เบอร์ติดต่อแพทย์</label>
+              <input id="physician_phone" name="physician_phone" type="tel" inputmode="tel" placeholder="0XXXXXXXXX" data-translate-placeholder="phone-placeholder" />
+            </div>
+          </div>
+
+          <!-- Row 8: สิ่งส่งตรวจ -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="specimen" data-translate="specimen-label">สิ่งส่งตรวจ</label>
+              <select id="specimen" name="specimen">
+                <option value="" data-translate="specimen-select-placeholder">เลือกชนิดสิ่งส่งตรวจ</option>
+                <option value="EDTA Blood">EDTA Blood</option>
+                <option value="Saliva">Saliva</option>
+                <option value="Buccal Swab">Buccal Swab</option>
+                <option value="FFPE">FFPE</option>
+                <option value="อื่น ๆ" data-translate="specimen-other">อื่น ๆ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 9: หมายเหตุเพิ่มเติม -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="note" data-translate="note-label">หมายเหตุเพิ่มเติม</label>
+              <textarea id="note" name="note" rows="3"
+                placeholder="ระบุข้อมูลเพิ่มเติม เช่น ประวัติการใช้ยา ประวัติการแพ้ ข้อมูลอื่น ๆ ที่จำเป็นของผู้ป่วย" data-translate-placeholder="note-placeholder"></textarea>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" data-translate="save-btn">บันทึกข้อมูล</button>
+            <button type="button" class="btn btn-secondary" data-translate="save-print-btn">บันทึกและพิมพ์ใบสั่งตรวจ (PDF)</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Shared Language System -->
+  <script src="js/shared-translations.js"></script>
+  <!-- Register Page JavaScript -->
+  <script src="js/Register.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="Register.css" />
+</head>
+
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a class="active" href="#">หน้าหลัก</a>
+        <a href="#">ลงทะเบียนผู้ป่วย</a>
+        <a href="#">ส่งตรวจ</a>
+        <a href="#">บันทึกผลการทดสอบ</a>
+        <a href="#">รายงานผล</a>
+        <a href="#">ควบคุมคุณภาพ</a>
+        <a href="#">รายงานสถิติ</a>
+        <a href="#">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title">Patient Registration</h1>
+        <div class="userbox">
+          <input type="text" placeholder="Name User.." />
+         <div class="user-icon-wrapper">
+        <img src="Image/6522516.png" alt="User Icon" class="user-icon" />
+        </div>
+      </div>
+      </header>
+
+      <!-- ===== Card ===== -->
+      <div class="card">
+        <h2 class="card-title">กรอกข้อมูลคนไข้รายใหม่</h2>
+
+        <form class="form" action="#" method="post" autocomplete="on" novalidate>
+
+          <!-- ชื่อ - นามสกุล -->
+          <div class="grid grid-2">
+            <div class="field-firstname">
+              <label for="first_name">ชื่อ</label>
+              <input id="first_name" name="first_name" type="text" placeholder="ชื่อ" required />
+            </div>
+
+            <div class="field-lastname">
+              <label for="last_name">นามสกุล</label>
+              <input id="last_name" name="last_name" type="text" placeholder="นามสกุล" required />
+            </div>
+          </div>
+
+          <!-- อายุ / เพศ -->
+          <div class="grid grid-2">
+            <div class="field-age">
+              <label for="age">อายุ</label>
+              <input id="age" name="age" type="text" placeholder="อายุ" />
+            </div>
+
+            <div class="field-gender">
+              <label for="gender">เพศ</label>
+              <select id="gender" name="gender">
+                <option value="">เพศ</option>
+                <option value="male">ชาย</option>
+                <option value="female">หญิง</option>
+                <option value="other">อื่น ๆ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- รพ. / เลขบัตร -->
+          <div class="grid grid-1">
+            <div class="field-cid">
+              <label for="cid">เลขบัตรประชาชน</label>
+              <input id="cid" name="cid" type="text" inputmode="numeric" maxlength="13" placeholder="เลข 13 หลัก" />
+            </div>
+
+            <div class="field-hospital">
+              <label for="hospital">หน่วยงานที่ส่งตรวจ</label>
+              <input id="hospital" name="hospital" type="text" placeholder="ชื่อโรงพยาบาล/หน่วยงาน" />
+            </div>
+          </div>
+
+          <!-- เชื้อชาติ / โทรคนไข้ -->
+          <div class="grid grid-1">
+            <div class="field-ethnicity">
+              <label for="ethnicity">เชื้อชาติ</label>
+              <input id="ethnicity" name="ethnicity" type="text" placeholder="เช่น ไทย, จีน, มอญ" />
+            </div>
+
+            <div class="field-patient_phone">
+              <label for="patient_phone">เบอร์ติดต่อผู้ป่วย</label>
+              <input id="patient_phone" name="patient_phone" type="tel" inputmode="tel" placeholder="0XXXXXXXXX" />
+            </div>
+          </div>
+
+          <!-- แพทย์ / โทรแพทย์ -->
+          <div class="grid grid-1">
+            <div class="field-physician">
+              <label for="physician">แพทย์</label>
+              <input id="physician" name="physician" type="text" placeholder="ชื่อ-สกุลแพทย์ผู้ส่งตรวจ" />
+            </div>
+
+            <div class="field-physician_phone">
+              <label for="physician_phone">เบอร์ติดต่อแพทย์</label>
+              <input id="physician_phone" name="physician_phone" type="tel" inputmode="tel" placeholder="0XXXXXXXXX" />
+            </div>
+          </div>
+
+          <!-- ชนิดสิ่งส่งตรวจ -->
+          <div class="grid grid-1">
+            <div class="field-specimen">
+              <label for="specimen">สิ่งส่งตรวจ</label>
+              <select id="specimen" name="specimen">
+                <option value="">เลือกชนิดสิ่งส่งตรวจ</option>
+                <option>EDTA Blood</option>
+                <option>Saliva</option>
+                <option>Buccal Swab</option>
+                <option>FFPE</option>
+                <option>อื่น ๆ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- หมายเหตุเพิ่มเติม -->
+          <div class="grid grid-1">
+            <div class="field-note">
+              <label for="note">หมายเหตุเพิ่มเติม</label>
+              <textarea id="note" name="note" rows="3"
+                placeholder="ระบุข้อมูลเพิ่มเติม เช่น ประวัติการใช้ยา ประวัติการแพ้ ข้อมูลอื่น ๆ ที่จำเป็นของผู้ป่วย"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+    <!-- ปุ่ม -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
+            <button type="button" class="btn btn-secondary">บันทึกและพิมพ์ใบสั่งตรวจ (PDF)</button>
+          </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <title>ลงชื่อเข้าใช้ | PGx System</title>
+  <link rel="stylesheet" href="css/Login.css">
+</head>
+<body>
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <!-- Language Toggle Switch -->
+        <div class="language-toggle">
+            <div class="lang-switch" id="languageSwitch">
+                <div class="lang-option left" data-lang="en">EN</div>
+                <div class="lang-option right active" data-lang="th">TH</div>
+                <div class="switch-slider"></div>
+            </div>
+        </div>
+        
+        <!-- Shutdown Button -->
+        <div class="shutdown-button">
+            <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()" title="Close Application">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <form id="loginForm" action="#" method="post">
+      <h2 class="main" data-translate="login-title">Login</h2>
+      
+      <div class="form-input">
+      <label for="email" data-translate="email-label">อีเมล</label><br>
+      <input type="email" id="email" name="email" data-translate-placeholder="email-placeholder" placeholder="E-mail" required><br><br>
+      </div>
+
+      <div class="form-input">
+      <label for="password" data-translate="password-label">รหัสผ่าน</label><br>
+      <input type="password" id="password" name="password" data-translate-placeholder="password-placeholder" placeholder="Password" required><br><br>
+      </div>
+      
+      <div class="button-container">
+      <button type="submit" data-translate="login-button">เข้าสู่ระบบ</button>
+      </div>
+
+      <p><a href="Forgotpassword.html" data-translate="forgot-password">ลืมรหัสผ่าน?</a></p>
+    </form>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/login.js"></script>
+</body>
+</html>

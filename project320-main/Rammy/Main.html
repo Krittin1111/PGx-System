@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="Main.css" />
+</head>
+
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a class="active" href="#">หน้าหลัก</a>
+        <a href="#">ลงทะเบียนผู้ป่วย</a>
+        <a href="#">ส่งตรวจ</a>
+        <a href="#">บันทึกผลการทดสอบ</a>
+        <a href="#">รายงานผล</a>
+        <a href="#">ควบคุมคุณภาพ</a>
+        <a href="#">รายงานสถิติ</a>
+        <a href="#">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title">Patient Registration</h1>
+        <div class="userbox">
+          <input type="text" placeholder="Name User.." />
+         <div class="user-icon-wrapper">
+        <img src="Image/6522516.png" alt="User Icon" class="user-icon" />
+        </div>
+      </div>
+      </header>
+
+      <!-- การเข้าถึงด่วน -->
+      <section class="section">
+        <h3 class="section-title">การเข้าถึงด่วน</h3>
+        <div class="quick" role="group" aria-label="การเข้าถึงด่วน">
+          <img src="Image/messageImage_1761911518158.png" alt="User Icon qr" class="user-icon-qr">
+          <div class="select">ค้นหาผู้ป่วย</div>
+          <input class="input" type="text" placeholder="ระบุ ชื่อ หรือ HN ของผู้ป่วย" />
+          <button class="btn btn-search">ค้นหา</button>
+          <button class="btn btn-report">รายงานผล</button>
+        </div>
+      </section>
+
+      <!-- สถานะรายงานผล -->
+      <section class="section status-section">
+        <h3 class="section-title">สถานะรายงานผล</h3>
+
+        <div class="status-grid">
+          <div class="status ok">
+            <div class="k">0</div>
+            <div class="t">อนุมัติแล้ว</div>
+          </div>
+          <div class="status wait">
+            <div class="k">0</div>
+            <div class="t">รออนุมัติ</div>
+          </div>
+          <div class="status warn">
+            <div class="k">0</div>
+            <div class="t">ส่งกลับแก้ไข</div>
+          </div>
+          <div class="status pending">
+            <div class="k">0</div>
+            <div class="t">ตรวจค้างอยู่</div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <!-- Table -->
+          <div class="table-card">
+            <div class="table-toolbar">
+              <span class="pill">📄 ทั้งหมด</span>
+              <span class="pill">🧪 ตรวจล่าสุด</span>
+              <span class="pill">⭐ สำคัญ</span>
+            </div>
+
+            <div class="table-cards">
+              <table>
+                <thead>
+                  <tr>
+                    <th>วันที่ส่งตรวจ</th>
+                    <th>รหัสตรวจสอบ</th>
+                    <th>คนไข้</th>
+                    <th>รายการตรวจ</th>
+                    <th>สถานะผล</th>
+                  </tr>
+                </thead>
+                <body>
+                  <tr>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td><span class="dot" title="พร้อมใช้งาน"></span></td>
+                  </tr>
+                  <tr>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td><span class="dot"></span></td>
+                  </tr>
+                  <tr>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td><span class="dot"></span></td>
+                  </tr>
+                </body>
+              </table>
+            </div>
+
+            <aside class="widget">
+              <h4>แจ้งเตือนล่าสุด</h4>
+
+              <div class="alert-block">
+                <div class="alert-title">รหัสทดสอบที่ต้องแก้ไข : ชนิดการทดสอบ</div>
+                <div class="alert-warning">
+                  xxxxxxx
+                </div>
+            </aside>
+          </div>
+          <!-- Knowledge -->
+          <section class="section">
+            <h3 class="section-title">คลังความรู้</h3>
+            <div class="links">
+              <a href="#">📑 Clinical outcomes in CYP2C19 intermediate metabolizers | Journal of The ...</a>
+              <a href="#">📑 Real-world evidence of alternative antiplatelet therapy by Johnson et al (20..)</a>
+            </div>
+          </section>
+      </section>
+    </main>  
+  </div>
+  <div class="standard-box">
+  <strong>การรับรองมาตรฐาน</strong>
+  <p class="desc">
+    ห้องปฏิบัติการนี้ผ่านการรับรองตามมาตรฐานดังต่อไปนี้<br>
+    🧾 ISO 15189:2022 • ISO/IEC 17025:2017
+  </p>
+  <small>
+    สำหรับข้อร้องเรียนหรือข้อเสนอแนะ กรุณาติดต่อผู้จัดการฝ่ายประกันคุณภาพ โทร 0-2345-6789 ต่อ 1234
+  </small>
+</div>
+
+
+</body>
+
+</html>

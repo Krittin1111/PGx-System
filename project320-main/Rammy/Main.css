@@ -1,0 +1,527 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*{
+  box-sizing:border-box}
+    html,body{height:10%}
+    body{
+      margin:0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", Arial, sans-serif;
+      background: #ECF5FD;
+      color: var(--ink);
+    }
+
+/* กรอบเมนู */
+
+:root {
+  --bg: #ECF5FD;
+  --card: #ffffff;
+  --primary-hover: #7488FC;
+  --text-light: #898989;
+  --radius: 14px;
+}
+
+aside {
+  width: 280px;
+  height: 100vh;
+  background-color: var(--card);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;              /* 🔥 เพิ่มระยะห่างระหว่างแต่ละส่วน (brand / nav / logout) */
+  padding: 50px 25px;     /* 🔥 เพิ่มระยะรอบใน (ภายในกรอบ) */
+  font-size: 20px;
+  width: 300px;
+  height: 1450px;
+  background-color: #fff;
+  box-shadow: 6px 0 15px rgba(127, 148, 255, 0.3); /* เงาฟ้าอ่อน */
+  padding: 20px;
+}
+
+aside .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;            
+  font-weight: 700;
+  font-size: 30px;
+  margin-left: -35px;
+  font-family: "Kanit", sans-serif;
+  color: #0f1222;
+}
+aside .logo {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;           
+}
+
+ aside nav a{
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 20px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+ }
+ 
+/*aside nav a.active {
+  background: linear-gradient(90deg, #9DAEFF, #7488FC);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(79, 124, 255, 0.3);
+} */
+
+
+ aside nav a:hover {
+  background-color: var(--primary-hover);
+   color: white; 
+}
+
+/*หัวDashboard */
+
+main {
+  padding: 25px;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 350px 1fr;  /* ✅ ซ้ายเป็น sidebar ขวาเป็น main */
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7488FC, #cccede);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  /* ✅ ทำให้เป็น gradient text */
+}
+
+/* กล่องผู้ใช้ */
+.userbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;                 /* ระยะระหว่างไอคอนกับช่องกรอก */
+  background: #2B395E;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(241,238,238,0.08);
+  min-width: 240px;          /* กันยุบเกินไป */
+}
+
+/* ===== กล่องครอบไอคอน ===== */
+.user-icon-wrapper {
+  top: 20px;                /* ห่างจากขอบบน */      
+  z-index: 999;             /* ✅ อยู่เหนือทุกองค์ประกอบ */
+  width: 5px;
+  height: 1px;
+}
+
+.user-icon {
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: -50px; 
+  cursor: pointer;
+   margin-top: -20px;
+}
+
+/* ไอคอนผู้ใช้ให้อยู่ "ด้านหน้า" ช่องกรอก */
+.userbox 
+.user-icon {
+  order: 0;                  /* ✅ มาก่อน input แม้ HTML อยู่ทีหลัง */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 40px;            /* ขนาดคงที่ ไม่ยืด/หด */
+  /* ลบ absolute เดิมออก */         
+  position: static;
+}
+
+/* ช่องกรอก */
+.userbox input {
+  order: 1;                  /* ✅ ตามหลังไอคอน */
+  flex: 1 1 auto;            /* กินพื้นที่ที่เหลือแบบยืดหยุ่น */
+  min-width:160px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #f9f9f9;
+}
+.userbox input::placeholder { color: #f9f9f9; }
+
+
+/*การเข้าถึงด่วน*/
+.section-title{
+  width: 200px;
+  height: 50px;
+  font-size: 25px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-top: 40px;
+  font-family: "Kanit", sans-serif;
+  left: 15px;
+}
+.user-icon-qr {
+  width: 350px;
+  height: 80px;
+  font-size: 14px; 
+  object-fit: cover;
+  margin-left: -50px;
+  cursor: pointer;              /* ✅ ทำให้กดได้ */
+  transform: scale(0.7)
+  
+}
+.user-icon-qr:hover {
+  box-shadow: 0 0 8px rgba(116, 136, 252, 0.5);
+  transform: scale(1.0);
+}
+.select {
+  padding: 10px 15px;               /* ✅ ระยะห่างภายใน */
+  border: 0.5px solid #000000;      
+  border-radius: 8px;               /* ✅ มุมโค้ง */
+  background-color: #ffffff;        /* ✅ พื้นหลังขาว */
+  color: #1a1a1a;                   /* ✅ ตัวหนังสือสีดำ */
+  font-size: 25px;
+  font-family: "Kanit", sans-serif; /* ✅ ฟอนต์ไทยสวย */
+  outline: none;
+  appearance: none;                 /* ✅ ซ่อนลูกศรมาตรฐาน */
+  cursor: default;                  /* ✅ ไม่เปลี่ยนเป็นมือ (เพราะเลือกไม่ได้) */
+  width: 750px;
+  height: 60px;
+  box-shadow: 0 2px 6px rgba(116, 136, 252, 0.15);
+  text-align: left;
+  margin-top: -75px;
+  position: relative;
+  left: 300px;                /* ✅ จัดข้อความให้อยู่กลาง */
+}
+.input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 350px;
+  height: 42px;
+  font-size: 15px;
+  font-family: "Kanit", sans-serif;
+  outline: none;
+  transition: 0.2s;
+  top: -50px;
+  position: relative;
+  left: 450px;
+}
+.input:focus {
+  border-color: #7488fc;
+  box-shadow: 0 0 5px rgba(116, 136, 252, 0.3);
+}
+
+.btn-search {
+  background-color: #2A3261;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  height: 42px;
+  font-size: 15px;
+  font-family: "Kanit", sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  top: -50px;  /* ✅ ยกขึ้นเล็กน้อยให้ตรงกับ input */
+  left: 460px;
+}
+
+.btn-search:hover {
+  background-color: #5a6ce6;
+}
+
+/* ปุ่มรายงานผล */
+.btn-report {
+  background-color: #fff;
+  border: 2px solid #2A3261;
+  color: #1B2452;
+  border-radius: 8px;
+  padding: 10px 20px;
+  height: 42px;
+  font-size: 15px;
+  font-family: "Kanit", sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  top: -2px;  /* ✅ ยกขึ้นให้อยู่ระดับเดียวกัน */
+  top: -50px;  /* ✅ ยกขึ้นเล็กน้อยให้ตรงกับ input */
+  left: 460px;
+}
+
+.btn-report:hover {
+  background-color: #7488fc;
+  color: #fff;
+}
+
+/*รายงานผล*/
+.status-section{
+  width: 200px;
+  height: 50px;
+  font-size: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-top: -25px;
+  font-family: "Kanit", sans-serif;
+}
+
+.status{
+  border-radius:14px; padding:14px; background:var(--bg-soft);
+  border:1px solid rgba(15,18,34,.06);
+  flex-direction: column-reverse;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 200px;
+  height: 70px; 
+}
+
+.status-grid {
+  display: flex;                /* ✅ เพิ่มบรรทัดนี้ให้เรียงแนวนอน */
+  
+  gap: 30px;                    /* ระยะห่างแต่ละกล่อง */
+  margin-top: 20px;
+}
+
+/* ตัวเลข */
+.status .k{
+  font-weight: 600;
+  margin-top: 2px;
+  color: #111;
+}
+/* ข้อความหัวข้อ */
+.status .t{
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #1b2430;
+}
+
+/* ความสูงเท่ากัน + แนวตั้งสวยขึ้น */
+.status .t{ font-size: 14px; }
+.status .k{ font-size: 16px; }
+
+/* สีแต่ละสถานะ */
+.status.ok{
+  background: #A0FFAB;       /* อนุมัติแล้ว */
+}
+.status.wait{
+  background: #FFF7A5;       /* รออนุมัติแล้ว */
+}
+.status.warn{
+  background: #FFA4A4;       /* แดงอ่อน */
+}
+.status.pending{
+  background: #ffffff;       /* ขาว */
+}
+
+/* เอฟเฟกต์ตอนโฮเวอร์นิดๆ */
+.status:hover{
+  transform: translateY(-2px);
+  transition: .18s ease;
+  box-shadow: 6px 0 15px rgba(127, 148, 255, 0.3);
+}
+
+/*พื้นหลังสถานะผล*/
+.table-card {
+  background-color: #ffffff;          
+  border: 1px solid rgba(15, 18, 34, 0.08); 
+  border-radius: 18px;                
+  padding: 25px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25); /* ✅ เงาฟ้าอ่อน (ขวาล่าง) */
+  margin: 20px auto;                  /* ✅ จัดให้อยู่กลางและมีช่องว่างรอบกล่อง */
+  width: 500%;                         /* ✅ ความกว้าง (ปรับได้ตามต้องการ) */
+  height: 450px;
+  box-sizing: border-box;
+  height: auto;             /* ✅ ป้องกัน padding เกินขอบ */
+}
+.table-cards{
+  flex: 0 0 32%; 
+  background-color: #2A3261;
+  border: 1px solid rgba(15, 18, 34, 0.08);                 
+  padding: 20px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25);
+  width: 95%;
+  height: 300px;                         
+  margin: 20px auto;                  
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: auto;  
+}
+
+.table-cards table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Kanit", sans-serif;
+}
+.table-cards th,
+.table-cards td {
+  padding: 10px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+/*.table-cards tr:hover {
+  background-color: #f9fbff;
+}*/
+
+/*เปลี่ยนสี front*/
+.table-cards table th {
+  color: #ffffff;          /* ✅ เปลี่ยนสีฟอนต์ (กรมท่าเข้ม) */
+  font-weight: 700;        /* ✅ ทำให้ตัวหนา */
+  font-size: 16px;         /* ✅ ปรับขนาดฟอนต์ */
+  font-family: "Kanit", sans-serif; /* ✅ ฟอนต์ไทยสวย ๆ */
+  letter-spacing: 0.5px;   /* ✅ ระยะห่างตัวอักษรเล็กน้อย */
+}
+
+.table-cards table td {
+  color: #ffffff;          /* ✅ เปลี่ยนสีฟอนต์ (กรมท่าเข้ม) */
+  font-weight: 700;        /* ✅ ทำให้ตัวหนา */
+  font-size: 16px;         /* ✅ ปรับขนาดฟอนต์ */
+  font-family: "Kanit", sans-serif; /* ✅ ฟอนต์ไทยสวย ๆ */
+  letter-spacing: 0.5px;   /* ✅ ระยะห่างตัวอักษรเล็กน้อย */
+}
+
+/*แสดงสถานะผล*/
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3DDC84;  /* ✅ จุดสีเขียว */
+}
+
+/*แจ้งเตือน*/
+/*พื้นหลัง*/
+.widget {
+  flex: 0 0 32%; 
+  background-color: #ffffff;          
+  border: 1px solid rgba(15, 18, 34, 0.08); 
+  border-radius: 18px;                
+  padding: 25px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25); /* ✅ เงาฟ้าอ่อน (ขวาล่าง) */
+  margin: 20px auto;                  /* ✅ จัดให้อยู่กลางและมีช่องว่างรอบกล่อง */
+  width: 35%;                         /* ✅ ความกว้าง (ปรับได้ตามต้องการ) */
+  height: 450px;
+  box-sizing: border-box;             
+  float: right;
+  position: relative;
+  left: 400px;
+  align-items:flex-start;
+  position: relative;
+  top: -320px;
+  height: auto;     
+}
+
+.alert-block{
+  flex: 0 0 32%; 
+  background-color: #2A3261;
+  border: 1px solid rgba(15, 18, 34, 0.08);                 
+  padding: 70px;                      
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25);
+  width: 100%;                       
+  margin: 20px auto;                  
+  box-sizing: border-box;
+  border-radius: 10px;
+  position: relative;
+  top: -30px;
+  justify-content: center;
+  font-size: 15px;
+  color: #ffffff;
+  height: auto;
+}
+
+.alert-title{
+  font-size: 12px;
+  font-weight: 700;
+  color: #fafafa;
+  margin-bottom: 5px;
+  text-align: left;  
+  align-items:center;
+  border-bottom:2px solid rgba(252, 252, 252, 0.922);
+  position: absolute;   /* ✅ ลอยในมุม */
+  top: 10px;            /* ✅ ห่างจากขอบบน 10px */
+  left: 14px;           /* ✅ ห่างจากขอบซ้าย 14px */
+  color: white;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.links a {
+  background-color: #ECF5FD;
+  color: #2B395E;
+  text-decoration: none;
+  padding: 15px 14px;
+  border-radius: 10px;
+  border: 1px solid #D1DBF9;
+  font-family: "Kanit", sans-serif;
+  font-size: 20px;
+  transition: 0.2s ease;
+  white-space: nowrap;     /* 🔹 ไม่ตัดคำกลางบรรทัด */
+  line-height: 3;
+}
+
+.links a:hover {
+  background-color: #9DAEFF;
+  color: white;
+  box-shadow: 0 3px 8px rgba(116, 136, 252, 0.4);
+}
+
+/*กล่องล่าง*/
+.standard-box {
+  background: #1E2A52;                 /* 🔹 พื้นหลังน้ำเงินเข้ม */
+  color: #ffffff;                     /* 🔹 ตัวอักษรสีขาว */
+  padding: 25px 40px;                 /* 🔹 ระยะภายใน */
+  border-radius: 0;                   /* 🔹 ไม่มีมุมโค้ง */
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1); /* 🔹 เงาอ่อนด้านบน */
+  width: 90%;                        /* ✅ เต็มความกว้างของหน้า */
+  box-sizing: border-box;
+  text-align: left;                   /* ✅ ตัวอักษรชิดซ้าย */
+  margin-top: -165px;
+  position: relative;
+   left: 300px;   
+}
+
+.standard-box strong {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.standard-box .desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #E3E8F5;                     /* 🔹 สีข้อความอ่อนลง */
+  margin: 0 0 10px;
+}
+
+.standard-box small {
+  font-size: 13px;
+  color: #C5CBE3;
+}
+
+
+
+    
+

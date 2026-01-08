@@ -1,0 +1,425 @@
+/* ========== 1) THEME TOKENS ========== */
+:root {
+    --bg: #e9f2f9;
+    --ink: #0f172a;
+    --muted: #8b95a7;
+    --panel: #ffffff;
+    --panel-head: #3f3f44;
+    --line: #d6def0;
+    --frame-outer: #e9f2f9;
+    --frame-inner: #cfe0ff;
+    --primary: #4f7fdc;
+
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 10px;
+
+    --pad-x: 40px;
+    /* padding แนวนอนของ .main */
+}
+
+/* ========== 2) RESET ========== */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Prompt", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+/* ========== 3) LAYOUT (App / Sidebar / Main) ========== */
+.app {
+    display: grid !important;
+    grid-template-columns: 320px minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #fff;
+    border-right: 2px solid var(--frame-inner);
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, #e6ecff, #bed1ff);
+}
+
+.brand-text {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 26px 0;
+}
+
+.menu-item {
+    display: block;
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 14px;
+    font-weight: 800;
+    color: #7a879b;
+    text-decoration: none;
+}
+
+.menu-item.active {
+    background: #cfe0ff;
+    color: #122c7a;
+    box-shadow: inset 0 0 0 2px #b7ccff;
+}
+
+.access {
+    margin-top: auto;
+    color: #9aa5b6;
+    font-size: 13px;
+}
+
+/* Main */
+.main {
+    padding: 28px var(--pad-x);
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.title {
+    margin: 0;
+    font-size: 46px;
+}
+
+.lang {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.globe {
+    width: 28px;
+    height: 28px;
+    fill: #1f2937;
+}
+
+.chip {
+    border: 1.6px solid var(--line);
+    background: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-weight: 800;
+}
+
+.chip span {
+    margin-left: 2px;
+}
+
+/* ========== 4) CARD FRAME ========== */
+.frame {
+    /* กรอบคู่ด้านนอก */
+    border: 3px solid var(--frame-outer);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    box-sizing: border-box;
+
+    /* ขยายเต็มกว้าง main */
+    margin-left: calc(var(--pad-x) * -1);
+    margin-right: calc(var(--pad-x) * -1);
+}
+
+.card {
+    background: var(--panel);
+    border-radius: 14px;
+    border: 2px solid var(--frame-inner);
+    overflow: hidden;
+    width: 100%;
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: var(--panel-head);
+    color: #fff;
+}
+
+.card-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 800;
+}
+
+/* ========== 5) FILTER BAR (2 แถว) ========== */
+.filters {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 24px;
+    row-gap: 10px;
+    padding: 15px 15px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+}
+
+/* label + control ในบรรทัดเดียว */
+.f {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #324056;
+    white-space: nowrap;
+}
+
+/* ตำแหน่งคอลัมน์ */
+.f-name {
+    grid-column: 1 / 3;
+}
+
+.f-role {
+    grid-column: 3 / 4;
+}
+
+.f-level {
+    grid-column: 4 / 5;
+}
+
+.f-action {
+    grid-column: 1 / 2;
+}
+
+.f-date {
+    grid-column: 2 / 3;
+}
+
+.f-date-to {
+    grid-column: 3 / 4;
+}
+
+/* ถ้าจะมีช่วงเวลาในอนาคต ค่อยปลดสองบรรทัดนี้
+.f-time    { grid-column: 4 / 5; }
+.f-time-to { grid-column: 5 / 6; }
+*/
+
+/* อินพุตข้อความทั่วไป (Name) */
+.input {
+    width: 100%;
+    height: 40px;
+    border: 1.8px solid #d5dbea;
+    border-radius: var(--radius-md);
+    padding: 0 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    background: #fff;
+    transition: border-color .18s, box-shadow .18s;
+}
+
+.input:hover,
+.input:focus {
+    border-color: #9db3e8;
+    box-shadow: 0 0 0 2px rgba(120, 155, 255, .25);
+    outline: none;
+}
+
+/* ========== 6) SELECT (สไตล์เดียวกัน + ลูกศร chevron) ========== */
+.selectwrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    height: 40px;
+    border: 1.8px solid #d5dbea;
+    border-radius: var(--radius-md);
+    padding: 0 38px 0 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    background: #fff;
+    cursor: pointer;
+    transition: border-color .18s, box-shadow .18s;
+}
+
+.select:hover,
+.select:focus {
+    border-color: #9db3e8;
+    box-shadow: 0 0 0 2px rgba(120, 155, 255, .25);
+    outline: none;
+}
+
+/* วาดเชฟรอน */
+.selectwrap::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #6d7a92;
+    border-bottom: 2px solid #6d7a92;
+    transform: translateY(-60%) rotate(45deg);
+    /* v */
+    pointer-events: none;
+    transition: transform .18s ease, border-color .18s ease;
+}
+
+.selectwrap:focus-within::after {
+    transform: translateY(-40%) rotate(-135deg);
+    /* ^ */
+    border-color: #2c3b82;
+}
+
+/* ปิดไอคอนเก่า หากยังมี .chev ใน DOM */
+.chev {
+    display: none !important;
+}
+
+/* ========== 7) NATIVE DATE INPUT ให้เข้าชุด ========== */
+.date-input {
+    width: 100%;
+    height: 40px;
+    border: 1.8px solid #d5dbea;
+    border-radius: var(--radius-md);
+    padding: 0 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    background: #fff;
+    cursor: pointer;
+    transition: border-color .18s, box-shadow .18s;
+}
+
+.date-input:hover,
+.date-input:focus {
+    border-color: #9db3e8;
+    box-shadow: 0 0 0 2px rgba(120, 155, 255, .25);
+    outline: none;
+}
+
+/* ปุ่มไอคอน calendar ของ Chrome */
+.date-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: .6;
+    filter: invert(35%);
+    transition: opacity .2s;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* ========== 8) TABLE (โทนขาว-เทาเรียบ) ========== */
+.table-wrap {
+    padding: 12px 14px 18px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1.6px solid var(--line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--panel);
+}
+
+.table thead th {
+    background: #f8f9fc;
+    color: var(--ink);
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+}
+
+.table th,
+.table td {
+    padding: 10px 14px;
+    font-size: 14px;
+    border-right: 1px solid var(--line);
+}
+
+.table th:last-child,
+.table td:last-child {
+    border-right: none;
+}
+
+.table tbody tr td {
+    border-bottom: 1px solid var(--line);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background: #fafbfe;
+}
+
+.center {
+    text-align: center;
+}
+
+/* ========== 9) RESPONSIVE ========== */
+@media (max-width:1080px) {
+    .app {
+        grid-template-columns: 260px 1fr;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media (max-width:760px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+    }
+
+    /* แปลงฟิลเตอร์เป็น 2 คอลัมน์บนจอเล็ก */
+    .filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .f-name {
+        grid-column: 1 / -1;
+    }
+
+    /* ชื่อผู้ใช้งานเต็มบรรทัด */
+}

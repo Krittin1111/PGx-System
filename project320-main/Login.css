@@ -1,0 +1,53 @@
+    body{
+        background-color : #ECF5FD;
+        font-family: sans-serif;
+    }
+    
+    form{
+         background : white;
+         padding: 30px;
+         width: 400px;
+         height: 400px;
+         border-radius: 10px;
+         box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+         margin: 100px auto; 
+    }
+
+    .main {
+         text-align: center;   /* ✅ จัดหัวข้อให้อยู่กลาง */
+         margin-bottom: 25px;
+     }
+    .form-input{
+        text-align: left;      /* ✅ ให้ข้อความและช่องกรอกชิดซ้าย */
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;        /* ให้ label อยู่บรรทัดบน input */
+        font-weight: 600;
+    
+     }
+    
+    input{
+        width: 90%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .button-container {
+  text-align: center; /* ✅ จัดให้อยู่กลางฟอร์ม */
+    }
+
+    button{
+        background-color: #9DAEFF;
+        width: 50%;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    

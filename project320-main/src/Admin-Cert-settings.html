@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PGX System — Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/Admin-Cert-settings.css" />
+    <script src="js/shared-translations.js"></script>
+</head>
+
+<body>
+    <!-- Modal: เพิ่มใบรับรองใหม่ -->
+    <div class="modal" id="certModal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="certDialogTitle" tabindex="-1">
+            <div class="dialog-head">
+                <div id="certDialogTitle" data-translate="add-new-certificate">เพิ่มใบรับรองใหม่</div>
+                <button class="icon-close" type="button" id="closeCertModal" data-translate-aria="close" aria-label="ปิด">✕</button>
+            </div>
+
+            <div class="dialog-body">
+                <div class="form-grid">
+                    <!-- มาตรฐาน -->
+                    <label class="field">
+                        <span data-translate="standard">มาตรฐาน (Standard)</span>
+                        <input class="input" id="std" type="text" data-translate-placeholder="enter-standard" placeholder="ระบุมาตรฐาน">
+                    </label>
+
+                    <!-- เลขที่ใบรับรอง -->
+                    <label class="field">
+                        <span data-translate="certificate-number">เลขที่ใบรับรอง (Certificate No.)</span>
+                        <input class="input" id="certNo" type="text" data-translate-placeholder="enter-certificate-number" placeholder="พิมพ์เลขที่ใบรับรอง">
+                    </label>
+
+                    <!-- หน่วยงานรับรอง -->
+                    <label class="field">
+                        <span data-translate="certification-authority">หน่วยงานรับรอง (Authority)</span>
+                        <input class="input" id="authority" type="text" data-translate-placeholder="enter-authority" placeholder="ระบุหน่วยงานที่รับรอง">
+                    </label>
+
+                    <!-- วันที่ออก -->
+                    <label class="field">
+                        <span data-translate="issue-date">วันที่ออก (Issue Date)</span>
+                        <div class="input-date">
+                            <input class="input" id="issueDate" type="date" placeholder="วว/ดด/ปป">
+                            <span class="cal-icn">📅</span>
+                        </div>
+                    </label>
+
+                    <!-- วันหมดอายุ -->
+                    <label class="field">
+                        <span data-translate="expiry-date">วันหมดอายุ (Expiry Date)</span>
+                        <div class="input-date">
+                            <input class="input" id="expiryDate" type="date" placeholder="วว/ดด/ปป">
+                            <span class="cal-icn">📅</span>
+                        </div>
+                    </label>
+
+                    <!-- อัปโหลดโลโก้หน่วยงาน -->
+                    <div class="field field-col-2">
+                        <span data-translate="upload-authority-logo">อัปโหลดโลโก้หน่วยงาน</span>
+                        <div class="upload-row">
+                            <input id="logoFile" type="file" accept="image/*" hidden>
+                            <button class="btn-upload-sm" type="button" id="btnPickLogo" data-translate="upload">อัปโหลด <span
+                                    aria-hidden="true">🖼️</span></button>
+                        </div>
+                        <div class="hint" data-translate="current-logo">โลโก้ปัจจุบัน : <span id="logoName">ไม่มี</span></div>
+                        <div class="hint-muted" data-translate="logo-size-hint">รูปภาพโลโก้ควรมีขนาด A × B</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialog-actions">
+                <button class="btn-cancel" type="button" id="cancelCert" data-translate="cancel-btn">ยกเลิก</button>
+                <button class="btn-primary" type="button" id="saveCert" data-translate="save-btn">บันทึก</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ ต้องมี .app ครอบและมีแค่สองลูก: aside.sidebar และ main.main -->
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo"></div>
+                <div class="brand-text">PGx System</div>
+            </div>
+
+            <nav class="menu">
+                <a class="menu-item" href="Admin.html" data-translate="user-list">รายชื่อผู้ใช้</a>
+                <a class="menu-item" href="Admin-Using the system.html" data-translate="system-usage">การใช้งานระบบ</a>
+                <a class="menu-item active" href="Admin-General-settings.html" data-translate="general-settings">การตั้งค่าทั่วไป</a>
+                <!-- <a class="menu-item active" href="Admin-Cert-settings.html" data-translate="certificate-settings">การรับรองมาตรฐาน</a> -->
+                <a class="menu-item" href="#" data-translate="logout" id="logoutBtn">ออกจากระบบ</a>
+            </nav>
+
+            <div class="access">Access : text</div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <h1 class="title" data-translate="admin-title">แอดมิน</h1>
+                <div class="top-controls">
+                    <!-- Language Toggle Switch -->
+                    <div class="language-toggle">
+                        <div class="lang-switch" id="languageSwitch">
+                            <div class="lang-option left" data-lang="en">EN</div>
+                            <div class="lang-option right active" data-lang="th">TH</div>
+                            <div class="switch-slider"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Shutdown Button -->
+                    <div class="shutdown-button">
+                        <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()" title="Close Application">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <section class="frame">
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-title">
+                            <button class="back-btn" onclick="window.location.href='Admin-General-settings.html'" data-translate-title="back-to-general-settings">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span data-translate="back-button">ย้อนกลับ</span>
+                            </button>
+                            <span data-translate="certificate-settings">การตั้งค่าใบรับรอง</span>
+                        </div>
+                    </div>
+
+                    <div class="filters">
+                        <label class="f">
+                            <span data-translate="certificate-standard">มาตรฐานใบรับรอง</span>
+                            <input class="input" type="text" data-translate-placeholder="search-placeholder" placeholder="ค้นหา..." />
+                        </label>
+                        <button class="btn-outline" id="openCreate" data-translate="add-new-certificate">เพิ่มใบรับรองใหม่</button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th data-translate="certificate">ใบรับรอง</th>
+                                    <th data-translate="certificate-number">เลขที่ใบรับรอง</th>
+                                    <th data-translate="certification-authority">หน่วยงานรับรอง</th>
+                                    <th data-translate="issue-date">วันที่ออก</th>
+                                    <th data-translate="expiry-date">วันหมดอายุ</th>
+                                    <th data-translate="status">สถานะ</th>
+                                    <th class="center" data-translate="actions">จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ISO 15189:2022</td>
+                                    <td>LAB-ISO15189-TH-2025-0021</td>
+                                    <td>TISI (สมอ.)</td>
+                                    <td>2025-01-10</td>
+                                    <td>2028-01-09</td>
+                                    <td><span class="status ok" data-translate="status-normal">ปกติ</span></td>
+                                    <td class="center">
+                                        <button class="icon-btn btnEditCert" data-std="ISO 15189:2022"
+                                            data-certno="LAB-ISO15189-TH-2025-0021" data-auth="TISI (สมอ.)"
+                                            data-issue="2025-01-10" data-exp="2028-01-09"
+                                            data-logo="PGXlogo31.png">⚙️</button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal: เพิ่มใบรับรองใหม่ -->
+
+    <script>
+        const openBtn = document.getElementById('openCreate');
+        const modal = document.getElementById('certModal');
+        const closeBtn = document.getElementById('closeCertModal');
+        const cancelBtn = document.getElementById('cancelCert');
+        const saveBtn = document.getElementById('saveCert');
+
+        const pickLogo = document.getElementById('btnPickLogo');
+        const logoInput = document.getElementById('logoFile');
+        const logoName = document.getElementById('logoName');
+
+        const std = document.getElementById('std');
+        const certNo = document.getElementById('certNo');
+        const authority = document.getElementById('authority');
+        const issueDate = document.getElementById('issueDate');
+        const expiryDate = document.getElementById('expiryDate');
+
+        const open = () => { modal.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        const close = () => { modal.classList.remove('show'); document.body.style.overflow = ''; }
+
+        closeBtn.addEventListener('click', close);
+        cancelBtn.addEventListener('click', close);
+        modal.querySelector('.modal-backdrop').addEventListener('click', close);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+        pickLogo.addEventListener('click', () => logoInput.click());
+        logoInput.addEventListener('change', () => {
+            logoName.textContent = logoInput.files?.[0]?.name || 'ไม่มี';
+        });
+
+        // ✅ กดปุ่ม "เพิ่มใบรับรองใหม่"
+        openBtn?.addEventListener('click', () => {
+
+            document.getElementById('certDialogTitle').textContent = 'เพิ่มใบรับรองใหม่';
+
+            // เคลียร์ค่า
+            std.value = '';
+            certNo.value = '';
+            authority.value = '';
+            issueDate.value = '';
+            expiryDate.value = '';
+            logoInput.value = '';
+            logoName.textContent = 'ไม่มี';
+
+            open();
+
+            // ✅ ตั้งปุ่มบันทึกใหม่แบบ Clean
+            saveBtn.onclick = () => {
+                console.log("CREATE CERT:", {
+                    standard: std.value.trim(),
+                    certNo: certNo.value.trim(),
+                    authority: authority.value.trim(),
+                    issueDate: issueDate.value,
+                    expiryDate: expiryDate.value,
+                    logo: logoInput.files?.[0] || null
+                });
+                close();
+            };
+        });
+
+        // ✅ กดปุ่ม "ฟันเฟืองแก้ไข"
+        document.querySelectorAll('.btnEditCert').forEach(btn => {
+            btn.addEventListener('click', () => {
+
+                document.getElementById('certDialogTitle').textContent = 'แก้ไขใบรับรอง';
+
+                std.value = btn.dataset.std;
+                certNo.value = btn.dataset.certno;
+                authority.value = btn.dataset.auth;
+                issueDate.value = btn.dataset.issue;
+                expiryDate.value = btn.dataset.exp;
+                logoName.textContent = btn.dataset.logo || 'ไม่มี';
+
+                open();
+
+                saveBtn.onclick = () => {
+                    console.log("UPDATE CERT:", {
+                        standard: std.value.trim(),
+                        certNo: certNo.value.trim(),
+                        authority: authority.value.trim(),
+                        issueDate: issueDate.value,
+                        expiryDate: expiryDate.value,
+                        logo: logoInput.files?.[0] || btn.dataset.logo || null
+                    });
+                    close();
+                };
+            });
+        });
+    </script>
+
+    <script src="js/admin-cert-settings.js"></script>
+
+</body>
+
+</html>

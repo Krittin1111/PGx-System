@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="css/qc.css">
+</head>
+
+<body>
+  <div class="app">
+
+<!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a href="Main.html" data-translate="nav-home">หน้าหลัก</a>
+        <a href="Register.html" data-translate="nav-register">ลงทะเบียนผู้ป่วย</a>
+        <a href="Test Orders Page.html" data-translate="nav-send-test">ส่งตรวจ</a>
+        <a href="Record Test Result.html" data-translate="nav-record-results">บันทึกผลการทดสอบ</a>
+        <a href="report.html" data-translate="nav-report">รายงานผล</a>
+        <a class="active" href="qc.html" data-translate="nav-quality">ควบคุมคุณภาพ</a>
+        <a href="Graph.html" data-translate="nav-statistics">รายงานสถิติ</a>
+        <a href="#" data-translate="nav-logout" id="logoutBtn">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+    <!-- ===== Main Content ===== -->
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title" data-translate="dashboard-title">PGX Dashboard</h1>
+        <div class="header-controls">
+          <div class="userbox">
+            <div class="user-display" id="userDisplay">
+              <span id="userName">Loading...</span>
+            </div>
+            <img src="Image/6522516.png" alt="User Icon" class="user-icon">
+          </div>
+          <div class="top-controls">
+            <!-- Language Toggle Switch -->
+            <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                <div class="lang-option left" data-lang="en">EN</div>
+                <div class="lang-option right active" data-lang="th">TH</div>
+                <div class="switch-slider"></div>
+              </div>
+            </div>
+
+            <!-- Shutdown Button -->
+            <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()"
+                title="Close Application">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="qc-section">
+        <div class="qc-header">
+          <span>เพิ่มบันทึกคุณภาพ :</span>
+          <button class="btn iqc">+ บันทึกผล IQC</button>
+          <button class="btn eqc">+ บันทึกผล EQC</button>
+          <button class="btn interlab">+ บันทึกผล Inter-Lab</button>
+        </div>
+
+        <!-- Filter row -->
+        <div class="qc-filters">
+          <select>
+            <option>ชนิด QC</option>
+            <option>ทั้งหมด</option>
+            <option>IQC</option>
+            <option>EQC</option>
+            <option>Inter-Lab</option>
+          </select>
+
+          <select>
+            <option>ผลลัพธ์</option>
+            <option>ทั้งหมด</option>
+            <option>ผ่าน</option>
+            <option>ไม่ผ่าน</option>
+          </select>
+
+          <select>
+            <option>วันที่</option>
+            <option>ทุกวัน</option>
+          </select>
+
+          <label>ช่วงเวลา</label>
+          <input type="time" value="00:00">
+          <span>ถึง</span>
+          <input type="time" value="23:59">
+
+          <input type="text" placeholder="ผู้บันทึก/ผู้ตรวจ">
+          <input type="text" placeholder="เครื่องมือ/ตัวอย่าง">
+        </div>
+
+        <!-- Table -->
+        <div class="qc-table">
+          <table>
+            <thead>
+              <tr>
+                <th>ชนิด QC</th>
+                <th>วันที่บันทึก/เวลา</th>
+                <th>ผู้บันทึก/ผู้ตรวจ</th>
+                <th>เครื่องมือ/ตัวอย่าง</th>
+                <th>ผลลัพธ์</th>
+                <th>ความคิดเห็น</th>
+                <th>ไฟล์แนบ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="qc-row"
+                  data-type="IQC"
+                  data-datetime="28-10-2568 00:21"
+                  data-inspector="นายกุลเดช แจ่มแสง"
+                  data-sample="Analyzer A"
+                  data-result="ผ่าน"
+                  data-comment="ไม่พบปัญหาอะไร"
+                  data-file="report000.pdf">
+                <td><span class="dot iqc"></span> IQC</td>
+                <td>28-10-2568 00:21</td>
+                <td>นายกุลเดช แจ่มแสง</td>
+                <td>Analyzer A</td>
+                <td>ผ่าน</td>
+                <td>ไม่พบปัญหาอะไร</td>
+                <td><button class="view-detail">ดูรายละเอียด</button></td>
+              </tr>
+              <!-- เพิ่มแถวอื่น ๆ ตามต้องการ -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <!-- Modal -->
+  <div id="qcModal" class="modal">
+  <div class="modal-content">
+    <h2>รายละเอียดบันทึก QC</h2>
+
+    <div class="modal-body">
+      <p><strong>วันที่/เวลา:</strong> <span id="modal-datetime"></span></p>
+      <p><strong>เครื่องมือ/ตัวอย่าง:</strong> <span id="modal-sample"></span></p>
+      <p><strong>ผู้ตรวจ:</strong> <span id="modal-inspector"></span></p>
+      <p><strong>ประเภทการตรวจ:</strong> <span id="modal-type"></span></p>
+      <p><strong>ผลลัพธ์:</strong> <span id="modal-result"></span></p>
+      <p><strong>ความคิดเห็น:</strong> <span id="modal-comment"></span></p>
+      <p><strong>ไฟล์รายงานแสกน:</strong> <span id="modal-file"></span></p>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="delete-btn danger">ลบบันทึก</button>
+      <button class="edit-btn primary">แก้ไข</button>
+      <button class="save-edit-btn success" style="display: none;">บันทึกการแก้ไข</button>
+      <button class="close">ย้อนกลับ</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal สำหรับเพิ่ม IQC -->
+<div id="addIQCModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header iqc">การบันทึกผล IQC</div>
+
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="iqc-datetime">วันที่/เวลา</label>
+          <input type="datetime-local" id="iqc-datetime" />
+        </div>
+        <div class="form-group">
+          <label for="iqc-sample">เครื่องมือ</label>
+          <input type="text" id="iqc-sample" placeholder="ชื่อเครื่อง / หมายเลข" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="iqc-type">ชนิดการตรวจ</label>
+          <input type="text" id="iqc-type" placeholder="เช่น Glucose, Hemoglobin" />
+        </div>
+        <div class="form-group">
+          <label for="iqc-result">ผล/สถานะ</label>
+          <select id="iqc-result">
+            <option value="ผ่าน">ผ่าน</option>
+            <option value="ไม่ผ่าน">ไม่ผ่าน</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="iqc-comment">หมายเหตุ</label>
+        <textarea id="iqc-comment" rows="3" placeholder="รายละเอียดเพิ่มเติม"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="iqc-file">แนบไฟล์ผล</label>
+        <input type="file" id="iqc-file" />
+      </div>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="close">ย้อนกลับ</button>
+      <button id="saveIQC">บันทึกผล</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal สำหรับเพิ่ม EQC -->
+<div id="addEQCModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header eqc">การบันทึกผล EQC</div>
+
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="eqc-datetime">วันที่/เวลา</label>
+          <input type="datetime-local" id="eqc-datetime" />
+        </div>
+        <div class="form-group">
+          <label for="eqc-sample">เครื่องมือ/ตัวอย่าง</label>
+          <input type="text" id="eqc-sample" placeholder="Sample ID XXXX" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="eqc-lab">แล็ป</label>
+          <input type="text" id="eqc-lab" placeholder="SampleLabCorp" />
+        </div>
+        <div class="form-group">
+          <label for="eqc-result">ผล/สถานะ</label>
+          <select id="eqc-result">
+            <option value="ผ่าน">ผ่าน</option>
+            <option value="ไม่ผ่าน">ไม่ผ่าน</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="eqc-comment">หมายเหตุ / ความคิดเห็นเพิ่มเติม</label>
+        <textarea id="eqc-comment" rows="3" placeholder="ความคิดเห็นเพิ่มเติม"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="eqc-file">แนบไฟล์รายงานผล</label>
+        <input type="file" id="eqc-file" />
+      </div>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="close">ย้อนกลับ</button>
+      <button id="saveEQC">บันทึกผล</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal สำหรับเพิ่ม Inter Lab -->
+<div id="addInterLabModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header interlab">การบันทึกผล Inter Lab QC</div>
+
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="interlab-datetime">วันที่/เวลา</label>
+          <input type="datetime-local" id="interlab-datetime" />
+        </div>
+        <div class="form-group">
+          <label for="interlab-sample">เครื่องมือ/ตัวอย่าง</label>
+          <input type="text" id="interlab-sample" placeholder="Sample ID 400XXX" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="interlab-lab">แล็ป</label>
+          <input type="text" id="interlab-lab" placeholder="PartnerLabAB" />
+        </div>
+        <div class="form-group">
+          <label for="interlab-result">ผลเปรียบเทียบ</label>
+          <select id="interlab-result">
+            <option value="ผ่าน">ผ่าน</option>
+            <option value="ไม่ผ่าน">ไม่ผ่าน</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="interlab-comment">หมายเหตุ / ความคิดเห็นเพิ่มเติม</label>
+        <textarea id="interlab-comment" rows="3" placeholder="หมายเหตุ และความคิดเห็นเพิ่มเติม"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="interlab-file">ไฟล์รายงานผลแนบ</label>
+        <input type="file" id="interlab-file" />
+      </div>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="close">ย้อนกลับ</button>
+      <button id="saveInterLab">บันทึกผล</button>
+    </div>
+  </div>
+</div>
+
+  <script src="js/qc.js"></script>
+</body>
+</html>

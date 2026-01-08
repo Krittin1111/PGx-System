@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="css/process.css">
+</head>
+
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a href="Main.html" data-translate="nav-home">หน้าหลัก</a>
+        <a href="Register.html" data-translate="nav-register">ลงทะเบียนผู้ป่วย</a>
+        <a href="Test Orders Page.html" data-translate="nav-send-test">ส่งตรวจ</a>
+        <a href="Record Test Result.html" data-translate="nav-record-results">บันทึกผลการทดสอบ</a>
+        <a class="active" href="report.html" data-translate="nav-report">รายงานผล</a>
+        <a href="qc.html" data-translate="nav-quality">ควบคุมคุณภาพ</a>
+        <a href="Graph.html" data-translate="nav-statistics">รายงานสถิติ</a>
+        <a href="#" data-translate="nav-logout" id="logoutBtn">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+    <!-- ===== Main Content ===== -->
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title" data-translate="dashboard-title">PGX Dashboard</h1>
+        <div class="header-controls">
+          <div class="userbox">
+            <div class="user-display" id="userDisplay">
+              <span id="userName">Loading...</span>
+            </div>
+            <img src="Image/6522516.png" alt="User Icon" class="user-icon">
+          </div>
+          <div class="top-controls">
+            <!-- Language Toggle Switch -->
+            <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                <div class="lang-option left" data-lang="en">EN</div>
+                <div class="lang-option right active" data-lang="th">TH</div>
+                <div class="switch-slider"></div>
+              </div>
+            </div>
+
+            <!-- Shutdown Button -->
+            <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()"
+                title="Close Application">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="process-container">
+        <div class="header">
+          <button class="back-btn" id="back-btn">ย้อนกลับ</button>
+          <h2>รายละเอียดผลตรวจ</h2>
+        </div>
+
+        <div class="result-card">
+          <p><strong>เลขใบสั่งตรวจ :</strong> 400XXX</p>
+          <p><strong>ผู้ป่วย :</strong> HN00123 : ศุรศัก ประตูบ้านทอง</p>
+          <p><strong>การทดสอบสั่งตรวจ :</strong> BloodEDTA</p>
+          <p><strong>ยาที่เกี่ยวข้อง :</strong> AAAAA, BBBBB, CCCC</p>
+          <p><strong>ยีนที่ทดสอบ :</strong> CYP2C9</p>
+          <p><strong>Genotype :</strong> *1/*1</p>
+          <p><strong>Phenotype :</strong> Normal metabolizer</p>
+
+          <hr>
+
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>แหล่งข้อมูล</th>
+                <th>Genotype</th>
+                <th>Phenotype</th>
+                <th>คำแนะนำการใช้ยา</th>
+                <th>ความถี่ในประชากร</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PharmGKB</td>
+                <td>*1/*1</td>
+                <td>Normal metabolizer</td>
+                <td>Standard dose</td>
+                <td>65% (Global)</td>
+              </tr>
+              <tr>
+                <td>CPIC</td>
+                <td>*2/*3</td>
+                <td>Intermediate metabolizer</td>
+                <td>Reduce dose by 50%</td>
+                <td>10% (Global)</td>
+              </tr>
+              <tr>
+                <td>Thai Reference Genome</td>
+                <td>*1/*3</td>
+                <td>Intermediate metabolizer</td>
+                <td>Reduce dose slightly</td>
+                <td>12% (Thai population)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="extra-info">
+            <p><strong>รายละเอียดเพิ่มเติม</strong></p>
+            <p>ข้อความ...</p>
+          </div>
+
+          <!-- ✅ ปุ่มดำเนินการ -->
+          <div class="btn-group">
+            <button class="approve-btn" id="approve-btn">ยืนยันผล</button>
+            <button class="reject-btn" id="reject-btn">ส่งกลับให้แก้ไข</button>
+            <button class="pdf-btn hidden" id="pdf-btn">PDF</button>
+            <p id="status-text"><strong>สถานะ :</strong> รอดำเนินการ</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <div id="revise-modal" class="modal hidden">
+  <div class="modal-content">
+    <h3>ส่งกลับให้แก้ไข</h3>
+    <p>ระบุสาเหตุหรือคำแนะนำสำหรับการส่งแก้ไข</p>
+    <textarea id="revise-message" placeholder="ข้อความ..."></textarea>
+    <div class="modal-buttons">
+      <button id="cancel-modal" class="btn btn-cancel">ยกเลิก</button>
+      <button id="confirm-revise" class="btn btn-revise-modal" disabled>
+        ยืนยันการส่งกลับ
+      </button>
+    </div>
+  </div>
+</div>
+
+
+  <script src="js/process.js"></script>
+</body>
+</html>

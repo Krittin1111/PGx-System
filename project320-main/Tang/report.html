@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="report.css">
+</head>
+
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a href="#">หน้าหลัก</a>
+        <a href="#">ลงทะเบียนผู้ป่วย</a>
+        <a href="#">ส่งตรวจ</a>
+        <a href="#">บันทึกผลการทดสอบ</a>
+        <a class="active" href="report.html">รายงานผล</a> <!-- ✅ ปุ่มนี้จะค้างสี -->
+        <a href="qc.html">ควบคุมคุณภาพ</a>
+        <a href="#">รายงานสถิติ</a>
+        <a href="#">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+
+    <!-- Main Content -->
+     <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title">PGX Dashboard</h1>
+        <div class="userbox">
+          <input type="text" placeholder="Name User.." />
+          <img src="Image/6522516.png" alt="User Icon" class="user-icon">
+          </button>
+        </div>
+      </header>
+      
+      <section class="content">
+        <h3>ค้นหาผลตรวจ</h3>
+        <div class="search-box">
+          <input type="text" placeholder="ค้นหา..." id="search-input">
+          <button id="search-btn">🔍</button>
+        </div>
+
+        <div class="table-section">
+          <h4>ตารางวิเคราะห์ผลตรวจ</h4>
+          <table id="result-table">
+            <thead>
+              <tr>
+                <th>วันที่ส่งตรวจ</th>
+                <th>รหัสทดสอบ</th>
+                <th>คนไข้</th>
+                <th>การทดสอบ</th>
+                <th>สถานะผล</th>
+                <th>การดำเนินการ</th>
+              </tr>
+            </thead>
+            <tbody id="result-table">
+              <!-- แถวข้อมูลจะถูกเติมด้วย JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="report.js"></script>
+</body>
+</html>

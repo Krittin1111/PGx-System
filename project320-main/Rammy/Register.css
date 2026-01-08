@@ -1,0 +1,504 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*{
+  box-sizing:border-box}
+    html,body{height:10%}
+    body{
+      margin:0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", Arial, sans-serif;
+      background: #ECF5FD;
+      color: var(--ink);
+    }
+
+/* กรอบเมนู */
+
+:root {
+  --bg: #ECF5FD;
+  --card: #ffffff;
+  --primary-hover: #7488FC;
+  --text-light: #898989;
+  --radius: 14px;
+}
+
+
+aside {
+  width: 280px;
+  height: 100vh;
+  background-color: var(--card);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;              /* 🔥 เพิ่มระยะห่างระหว่างแต่ละส่วน (brand / nav / logout) */
+  padding: 50px 25px;     /* 🔥 เพิ่มระยะรอบใน (ภายในกรอบ) */
+  font-size: 20px;
+  width: 300px;
+  height: 880px;
+  background-color: #fff;
+  box-shadow: 6px 0 15px rgba(127, 148, 255, 0.3); /* เงาฟ้าอ่อน */
+  padding: 20px;
+}
+
+aside .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;            
+  font-weight: 700;
+  font-size: 30px;
+  margin-left: -35px;
+  font-family: "Kanit", sans-serif;
+  color: #0f1222;
+}
+aside .logo {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;           
+}
+
+ aside nav a{
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 20px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+ }
+ 
+/*aside nav a.active {
+  background: linear-gradient(90deg, #9DAEFF, #7488FC);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(79, 124, 255, 0.3);
+} */
+
+
+ aside nav a:hover {
+  background-color: var(--primary-hover);
+   color: white; 
+}
+
+/*หัวDashboard */
+
+main {
+  padding: 25px;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 350px 1fr;  /* ✅ ซ้ายเป็น sidebar ขวาเป็น main */
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7488FC, #cccede);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  /* ✅ ทำให้เป็น gradient text */
+}
+
+    
+
+/* กล่องผู้ใช้ */
+.userbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;                 /* ระยะระหว่างไอคอนกับช่องกรอก */
+  background: #2B395E;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(241,238,238,0.08);
+  min-width: 240px;          /* กันยุบเกินไป */
+}
+
+/* ===== กล่องครอบไอคอน ===== */
+.user-icon-wrapper {
+  top: 20px;                /* ห่างจากขอบบน */      
+  z-index: 999;             /* ✅ อยู่เหนือทุกองค์ประกอบ */
+  width: 5px;
+  height: 1px;
+}
+
+.user-icon {
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: -50px; 
+  cursor: pointer;
+   margin-top: -20px;
+}
+
+/* ไอคอนผู้ใช้ให้อยู่ "ด้านหน้า" ช่องกรอก */
+.userbox 
+.user-icon {
+  order: 0;                  /* ✅ มาก่อน input แม้ HTML อยู่ทีหลัง */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 40px;            /* ขนาดคงที่ ไม่ยืด/หด */
+  /* ลบ absolute เดิมออก */
+  position: static;
+}
+
+/* ช่องกรอก */
+.userbox input {
+  order: 1;                  /* ✅ ตามหลังไอคอน */
+  flex: 1 1 auto;            /* กินพื้นที่ที่เหลือแบบยืดหยุ่น */
+  min-width:160px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #f9f9f9;
+}
+.userbox input::placeholder { color: #f9f9f9; }
+
+
+/*กล่อง*/
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  max-width: 1000px;
+  margin: 20px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 50px 0 20px -20px;
+  height: auto;
+  box-shadow: 6px 6px 0 rgba(116, 136, 252, 0.25); 
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #222;
+  font-family: "Kanit", sans-serif;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1fr;  /* ซ้ายกว้างกว่านิดตามภาพ */
+  column-gap: 18px;
+  row-gap: 14px;
+}
+
+/* ====== แถว: ชื่อ-นามสกุล (อยู่คอลัมน์ซ้าย) ====== */
+.form .grid.grid-1 {
+  grid-column: 1 ;               /* อยู่คอลัมน์ซ้าย */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;        /* ชื่อ / นามสกุล เท่ากัน */
+  column-gap: 10px;                        /* ให้ชิดกันแบบภาพ */
+}
+
+.field-firstname label,
+.field-lastname label,
+.field-age label,
+.field-gender label{
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.field-firstname input { 
+  padding: 12px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;  /* ขอบสีดำปกติ */   
+  transition: all 0.25s ease-in-out;
+  
+}
+
+.field-lastname  input { 
+  padding: 12px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;  /* ขอบสีดำปกติ */   
+  transition: all 0.25s ease-in-out;
+}
+
+.field-age input { 
+  padding: 12px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;  /* ขอบสีดำปกติ */   
+  transition: all 0.25s ease-in-out;
+}
+
+/* ช่องเพศ */
+.field-gender select {
+  display: grid;
+  padding: 12px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;  /* ขอบสีดำปกติ */   
+  transition: all 0.25s ease-in-out;
+  width: 200px;
+  align-items: end;
+}
+
+.field-firstname input:focus,
+.field-lastname input:focus,
+.field-age input:focus,
+.field-gender select:focus {
+  border-color: #4f7cff;        
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.25);
+  outline: none;
+}
+
+/* ====== แถว: 2 ====== */
+.form .grid.grid-2 {                      /* ดีฟอลต์ใช้ 1:2 เหมือนภาพ */
+  display: grid;
+  grid-template-columns: 1fr 1fr;         /* ซ้ายแคบ ขวากว้าง */
+  column-gap: 10px;
+  align-items: start; 
+}
+
+.field-hospital {
+  transform: translateX(250px);
+}
+
+
+/* ป้ายชื่อ (label) */
+.field-cid label,
+.field-hospital label {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  font-size: 12px;               /* ✅ ชิดซ้ายตามภาพ */
+  
+}
+
+.field-cid input,
+.field-hospital input{
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;   
+  height: 44px;
+  width: 200%;
+  transition: all 0.25s ease-in-out;
+}
+
+
+.field-cid input:focus,
+.field-hospital input:focus {
+  border-color: #4f7cff;        
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.25);
+  outline: none;
+}
+
+/* ====== แถว: 3 ====== */
+.form .grid.grid-2 {                      /* ดีฟอลต์ใช้ 1:2 เหมือนภาพ */
+  display: grid;
+  grid-template-columns: 1fr 1fr;         /* ซ้ายแคบ ขวากว้าง */
+  column-gap: 10px;
+  align-items: start; 
+}
+
+.field-patient_phone {
+  transform: translateX(250px);
+}
+
+
+/* ป้ายชื่อ (label) */
+.field-ethnicity label,
+.field-patient_phone label {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  font-size: 12px;               /* ✅ ชิดซ้ายตามภาพ */
+  
+}
+
+.field-ethnicity input,
+.field-patient_phone input{
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;   
+  height: 44px;
+  width: 200%;
+  transition: all 0.25s ease-in-out;
+}
+
+
+.field-ethnicity input:focus,
+.field-patient_phone input:focus {
+  border-color: #4f7cff;        
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.25);
+  outline: none;
+}
+
+/* ====== แถว: 4 ====== */
+.form .grid.grid-1 {                      /* ดีฟอลต์ใช้ 1:2 เหมือนภาพ */
+  display: grid;
+  grid-template-columns: 1fr 1fr;         /* ซ้ายแคบ ขวากว้าง */
+  column-gap: 10px;
+  align-items: start; 
+}
+
+.field-physician_phone {
+  transform: translateX(250px);
+}
+
+
+/* ป้ายชื่อ (label) */
+.field-physician label,
+.field-physician_phone label {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  font-size: 12px;               /* ✅ ชิดซ้ายตามภาพ */
+  
+}
+
+.field-physician input,
+.field-physician_phone input{
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;   
+  height: 44px;
+  width: 200%;
+  transition: all 0.25s ease-in-out;
+}
+
+
+.field-physician input:focus,
+.field-physician_phone input:focus {
+  border-color: #4f7cff;        
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.25);
+  outline: none;
+}
+
+/* ====== แถว: 5 ====== */
+
+.field-specimen label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: #222;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.field-specimen select {
+  display: grid;
+  padding: 12px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #000000;  /* ขอบสีดำปกติ */   
+  transition: all 0.25s ease-in-out;
+  width: 450px;
+  align-items: end;
+}
+
+.field-specimen select:focus {
+  border-color: #4f7cff;
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.25);
+  outline: none;
+}
+
+/* หมายเหตุเพิ่มเติม แถว 6*/
+.field-note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 420%;
+}
+
+.field-note label {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.field-note textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 14px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1.5px solid #000;
+  background: #fff;
+  transition: all 0.25s ease-in-out;
+  resize: vertical; /* 👈 สามารถยืดได้เฉพาะแนวตั้ง */
+
+}
+
+.field-note textarea:focus {
+  border-color: #4f7cff;
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.25);
+  outline: none;
+}
+
+/* ====== ปุ่มส่วนล่าง ====== */
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  padding-bottom: 24px;
+  justify-content: flex-start;     /* ✅ ชิดซ้ายตามขอบการ์ด */
+  padding-left: 590px;            /* ✅ ขยับเข้าเท่ากับเนื้อหาใน card */
+}
+
+/* ปุ่มหลัก (สีเขียว - บันทึกข้อมูล) */
+.btn.btn-primary {
+  background-color: #2ecc71;     /* ✅ สีเขียวสุขภาพ */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 0.25s ease;
+}
+
+.btn.btn-primary:hover {
+  background-color: #27ae60;     /* สีเข้มขึ้นเมื่อ hover */
+}
+
+/* ปุ่มรอง (สีกรม - พิมพ์ใบสั่งตรวจ) */
+.btn.btn-secondary {
+  background-color: #2d3e64;     /* ✅ สีกรมเข้ม */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.btn.btn-secondary:hover {
+  background-color: #1b2848;
+}
+

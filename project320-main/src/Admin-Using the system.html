@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX System — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/Admin.css" />
+</head>
+
+<body>
+  <!-- ✅ ต้องมี .app ครอบและมีแค่สองลูก: aside.sidebar และ main.main -->
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brand-text">PGx System</div>
+      </div>
+
+      <nav class="menu">
+        <a class="menu-item" href="Admin.html" data-translate="user-list">รายชื่อผู้ใช้</a>
+        <a class="menu-item active" href="Admin-Using the system.html" data-translate="system-usage">การใช้งานระบบ</a>
+        <a class="menu-item" href="Admin-General-settings.html" data-translate="activity-log">การตั้งค่าทั่วไป</a>
+        <a class="menu-item" href="#" data-translate="logout" id="logoutBtn">ออกจากระบบ</a>
+      </nav>
+
+      <div class="access">Access : text</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1 class="title" data-translate="admin-title">แอดมิน</h1>
+        <div class="top-controls">
+          <!-- Language Toggle Switch -->
+          <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                  <div class="lang-option left" data-lang="en">EN</div>
+                  <div class="lang-option right active" data-lang="th">TH</div>
+                  <div class="switch-slider"></div>
+              </div>
+          </div>
+          
+          <!-- Shutdown Button -->
+          <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()" title="Close Application">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+              </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="frame">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <strong data-translate="check-historical-edits">ตรวจสอบการแก้ไขย้อนหลัง</strong>
+            </div>
+
+          </div>
+
+          <div class="filters">
+
+            <label class="f f-name">
+              <span data-translate="username">ชื่อผู้ใช้งาน</span>
+              <input class="input" type="text" placeholder="Value">
+            </label>
+
+            <label class="f f-role">
+              <span data-translate="role">บทบาท</span>
+              <div class="selectwrap">
+                <select class="select">
+                  <option data-translate="all">ทั้งหมด</option>
+                  <option data-translate="doctor">แพทย์</option>
+                  <option data-translate="admin">ผู้ดูแลระบบ</option>
+                  <option data-translate="pharmacist">เภสัชกร</option>
+                  <option data-translate="lab-manager">ผู้จัดการแลป</option>
+                  <option data-translate="lab-assistant">ผู้ช่วยแลป</option>
+                  <option data-translate="bioinformatician">นักชีวสารสนเทศ</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="f f-level">
+              <span data-translate="level">ระดับ</span>
+              <div class="selectwrap">
+                <select class="select">
+                  <option data-translate="all">ทั้งหมด</option>
+                  <option data-translate="admin">แอดมิน</option>
+                  <option data-translate="user">ผู้ใช้</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="f f-action">
+              <span data-translate="action">การกระทำ</span>
+              <div class="selectwrap">
+                <select class="select">
+                  <option data-translate="all">ทั้งหมด</option>
+                  <option>เข้าสู่ระบบ</option>
+                  <option>ออกจากระบบ</option>
+                  <option>สร้างผู้ใช้รายใหม่</option>
+                  <option>ลบผู้ใช้ออกจากระบบ</option>
+                  <option>เพิ่มมาตราฐาน</option>
+                  <option>ลบมาตราฐาน</option>
+                  <option>เพิ่มข้อมูลผู้ป่วย</option>
+                  <option>นำเข้าใบสั่งตรวจ</option>
+                  <option>ปฏิเสธสิ่งส่งตรวจ</option>
+                  <option>รายงานผลแลป</option>
+                  <option>ดูรายงานผลแลป</option>
+                  <option>อนุมัติรายงานผลแลป</option>
+                  <option>แก้ไขรายงานผลแลป</option>
+                  <option>ส่งกลับรายงานผลแลป</option>
+                  <option>บันทึกผล IQC</option>
+                  <option>บันทึกผล EQC</option>
+                  <option>บันทึกผล I-LabQC</option>
+                  <option>แก้ไขบันทึกผล QC</option>
+                  <option>ลบบันทึกผล QC</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="f f-date">
+              <span data-translate="date">วันที่</span>
+              <input type="date" class="input date-input">
+            </label>
+
+
+            <label class="f f-date-to">
+              <span data-translate="to">ถึง</span>
+              <input type="date" class="input date-input">
+            </label>
+          </div>
+
+
+
+
+          <div class="table-wrap">
+            <table class="table">
+              <!-- คุมความกว้างแต่ละคอลัมน์ -->
+              <colgroup>
+                <col style="width: 90px"> <!-- วันที่ -->
+                <col style="width: 70px"> <!-- เวลา -->
+                <col style="width: 240px"> <!-- ชื่อผู้ใช้ -->
+                <col style="width: 120px"> <!-- ตำแหน่ง -->
+                <col style="width: 150px"> <!-- ระดับการเข้าถึง -->
+                <col style="width: 150px"> <!-- การกระทำ -->
+                <col style="width: 150px"> <!-- ที่กระทำ -->
+                <col style="width: auto"> <!-- หมายเหตุ (ยืดได้) -->
+              </colgroup>
+
+              <thead>
+                <tr>
+                  <th class="center" data-translate="date-header">วันที่</th>
+                  <th class="center" data-translate="time-header">เวลา</th>
+                  <th data-translate="user-name-header">ชื่อผู้ใช้</th>
+                  <th data-translate="position-header">ตำแหน่ง</th>
+                  <th data-translate="access-level-header">ระดับการเข้าถึง</th>
+                  <th data-translate="action-header">การกระทำ</th>
+                  <th data-translate="target-header">ที่กระทำ</th>
+                  <th data-translate="notes-header">หมายเหตุ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- ตัวอย่างแถว -->
+                <tr>
+                  <td class="center">26/10/68</td>
+                  <td class="center">00:05</td>
+                  <td>นายหนึ่ง ลาคุนึ่ง</td>
+                  <td>แพทย์</td>
+                  <td>แอดมิน</td>
+                  <td>เข้าสู่ระบบ</td>
+                  <td>เข้าสู่ระบบ User</td>
+                  <td>ส่งผลการทดลองเลือด...</td>
+                </tr>
+                <tr>
+                  <td class="center">26/10/68</td>
+                  <td class="center">03:21</td>
+                  <td>นายสอง ลาคลัก...</td>
+                  <td>แพทย์</td>
+                  <td>ผู้ใช้</td>
+                  <td>อนุมัติผลแลบ</td>
+                  <td>แลบ XXX</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-------------------------------------------สร้างผู้ใช้ใหม่--------------->
+
+  <!-- Admin Using the System JavaScript -->
+  <script src="js/Admin-Using the system.js"></script>
+</body>
+
+</html>

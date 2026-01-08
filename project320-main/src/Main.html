@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX Dashboard</title>
+  <link rel="stylesheet" href="css/Main.css" />
+  <script src="js/main.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside>
+      <div class="brand">
+        <span class="logo"></span>
+        PGx System
+      </div>
+
+      <nav class="nav">
+        <a class="active" href="#" data-translate="nav-home">หน้าหลัก</a>
+        <a href="Register.html" data-translate="nav-register">ลงทะเบียนผู้ป่วย</a>
+        <a href="Test Orders Page.html" data-translate="nav-send-test">ส่งตรวจ</a>
+        <a href="Record Test Result.html" data-translate="nav-record-results">บันทึกผลการทดสอบ</a>
+        <a href="report.html" data-translate="nav-report">รายงานผล</a>
+        <a href="qc.html" data-translate="nav-quality">ควบคุมคุณภาพ</a>
+        <a href="Graph.html" data-translate="nav-statistics">รายงานสถิติ</a>
+        <a href="#" data-translate="nav-logout" id="logoutBtn">ออกจากระบบ</a>
+      </nav>
+    </aside>
+
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title" data-translate="dashboard-title">PGX Dashboard</h1>
+        <div class="header-controls">
+          <div class="userbox">
+            <div class="user-display" id="userDisplay">
+              <span id="userName">Loading...</span>
+            </div>
+            <img src="Image/6522516.png" alt="User Icon" class="user-icon">
+          </div>
+          <div class="top-controls">
+            <!-- Language Toggle Switch -->
+            <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                <div class="lang-option left" data-lang="en">EN</div>
+                <div class="lang-option right active" data-lang="th">TH</div>
+                <div class="switch-slider"></div>
+              </div>
+            </div>
+
+            <!-- Shutdown Button -->
+            <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()"
+                title="Close Application">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- การเข้าถึงด่วน -->
+      <section class="section">
+        <h3 class="section-title" data-translate="quick-access-title">การเข้าถึงด่วน</h3>
+        <div class="quick" role="group" aria-label="การเข้าถึงด่วน">
+          <img src="Image/messageImage_1761911518158.png" alt="User Icon qr" class="user-icon-qr" id="scanBarcodeBtn" style="cursor: pointer;" title="คลิกเพื่อสแกน Barcode">
+          <div class="select" data-translate="search-patient">ค้นหาผู้ป่วย</div>
+          <input class="input" type="text" placeholder="ระบุ ชื่อ หรือ HN ของผู้ป่วย" data-translate-placeholder="patient-search-placeholder" />
+          
+            <button class="btn btn-search" data-translate="search-btn">ค้นหา</button>
+            <button class="btn btn-report" data-translate="report-btn">รายงานผล</button>
+          
+        </div>
+      </section>
+
+      <!-- สถานะรายงานผล -->
+      <section class="section status-section">
+        <h3 class="section-title" data-translate="status-title">สถานะรายงานผล</h3>
+
+        <div class="status-grid">
+          <div class="status ok">
+            <div class="k">0</div>
+            <div class="t" data-translate="status-approved">อนุมัติแล้ว</div>
+          </div>
+          <div class="status wait">
+            <div class="k">0</div>
+            <div class="t" data-translate="status-pending">รออนุมัติ</div>
+          </div>
+          <div class="status warn">
+            <div class="k">0</div>
+            <div class="t" data-translate="status-returned">ส่งกลับแก้ไข</div>
+          </div>
+          <div class="status pending">
+            <div class="k">0</div>
+            <div class="t" data-translate="status-testing">ตรวจค้างอยู่</div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <!-- Table -->
+          <div class="table-card">
+            <div class="table-toolbar">
+              <span class="pill" data-translate="pill-all">📄 ทั้งหมด</span>
+              <span class="pill" data-translate="pill-latest">🧪 ตรวจล่าสุด</span>
+              <span class="pill" data-translate="pill-important">⭐ สำคัญ</span>
+            </div>
+
+            <div class="table-cards">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-translate="table-date">วันที่ส่งตรวจ</th>
+                    <th data-translate="table-code">รหัสตรวจสอบ</th>
+                    <th data-translate="table-patient">คนไข้</th>
+                    <th data-translate="table-tests">รายการตรวจ</th>
+                    <th data-translate="table-status">สถานะผล</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td><span class="dot" title="พร้อมใช้งาน"></span></td>
+                  </tr>
+                  <tr>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td><span class="dot"></span></td>
+                  </tr>
+                  <tr>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td>xxxxxxx</td>
+                    <td><span class="dot"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <aside class="widget">
+              <h4 data-translate="alert-title">แจ้งเตือนล่าสุด</h4>
+
+              <div class="alert-block">
+                <div class="alert-title" data-translate="alert-message">รหัสทดสอบที่ต้องแก้ไข : ชนิดการทดสอบ</div>
+                <div class="alert-warning">
+                  xxxxxxx
+                </div>
+              </div>
+            </aside>
+          </div>
+          <!-- Knowledge -->
+          <section class="section">
+            <h3 class="section-title" data-translate="knowledge-title">คลังความรู้</h3>
+            <div class="links">
+              <a href="#">📑 Clinical outcomes in CYP2C19 intermediate metabolizers | Journal of The ...</a>
+              <a href="#">📑 Real-world evidence of alternative antiplatelet therapy by Johnson et al (20..)</a>
+            </div>
+          </section>
+      </section>
+      <!-- Footer -->
+      <div class="standard-box">
+        <strong data-translate="certification-title">การรับรองมาตรฐาน</strong>
+        <p class="desc" data-translate="certification-desc">
+          ห้องปฏิบัติการนี้ผ่านการรับรองตามมาตรฐานดังต่อไปนี้<br>
+          🧾 ISO 15189:2022 • ISO/IEC 17025:2017
+        </p>
+        <small data-translate="contact-info">
+          สำหรับข้อร้องเรียนหรือข้อเสนอแนะ กรุณาติดต่อผู้จัดการฝ่ายประกันคุณภาพ โทร 0-2345-6789 ต่อ 1234
+        </small>
+      </div>
+    </main>
+  </div>
+
+  <!-- Barcode Scanner Modal -->
+  <div id="barcodeScannerModal" class="modal" style="display: none;">
+    <div class="container">
+      <div class="header">
+        <span data-translate="barcode-scanner-title">หน้าแสกนใบสั่งตรวจ</span>
+        <span class="close" id="closeBarcodeModal">&times;</span>
+      </div>
+
+      <div class="layout">
+        <!-- LEFT SIDE -->
+        <div class="left-section">
+          <h3 data-translate="scan-area-title">พื้นที่แสกน Barcode</h3>
+          <div class="scan-box" id="scanArea" style="cursor: pointer;" title="คลิกเพื่อเริ่มแสกน">
+            <div class="scan-placeholder" id="scanPlaceholder">
+              <img src="Image/messageImage_1761911518158.png" alt="scan-placeholder" />
+              <p data-translate="scan-instruction">แสดง Barcode ภายในกรอบที่กำหนด</p>
+            </div>
+            <div id="camera-preview" class="camera-preview" style="display: none;"></div>
+          </div>
+
+          <div class="barcode-section" id="barcodeSection" style="display: none;">
+            <h4 data-translate="found-barcode-title">Barcode ที่พบ</h4>
+            <div class="barcode-display">
+              <div class="barcode-result" id="barcodeResultDisplay"></div>
+            </div>
+          </div>
+
+          <!-- Manual Input Section -->
+          <div class="manual-input-section">
+            <button id="stopScanner" class="btn btn-secondary" style="display: none;" data-translate="stop-scanner">หยุดแสกน</button>
+            
+            <h4 class="manual-input-title" data-translate="manual-input-title">กรอกรหัส Barcode ด้วยตนเอง</h4>
+            <div class="manual-input">
+              <input type="text" id="manualBarcodeInput" placeholder="กรอกรหัส Barcode" data-translate-placeholder="manual-barcode-placeholder">
+              <button id="searchManualBarcode" class="btn btn-search" data-translate="search">ค้นหา</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="result-section">
+          <!-- Loading Display -->
+          <div class="loading-display" id="loadingMessage" style="display: none;">
+            <div class="loading-spinner"></div>
+            <div class="loading-text" data-translate="searching">กำลังค้นหา...</div>
+          </div>
+
+          <!-- Error Display -->
+          <div class="error-display" id="errorMessage" style="display: none;">
+            <div class="error-message" id="errorText">
+              ไม่พบใบสั่งตรวจ หรือมีอะไรผิดพลาดลองแสกนใหม่หรือกรอกเลข barcode
+            </div>
+          </div>
+
+          <!-- Success Display -->
+          <div class="success-display" id="patientInfo" style="display: none;">
+            <p><span class="label" data-translate="lab-order-number">หมายเลขใบสั่งตรวจ</span> <span id="labCode">LAB-PGX-2024-08765</span></p>
+            
+            <p><span class="label" data-translate="patient-number">หมายเลขผู้ป่วย</span> <a href="#" id="patientNumber">HN00123</a></p>
+            <p class="patient-status" data-translate="patient-found">ค้นพบข้อมูลผู้ป่วยในระบบ</p>
+            <button class="find-patient-btn" id="findPatientBtn" data-translate="find-patient">ค้นหาผู้ป่วย</button>
+
+            <p><span class="label" data-translate="specimen-type">สิ่งส่งตรวจ</span> <span id="specimenType">EDTA Blood</span></p>
+            <p><span class="label" data-translate="related-drug">ยาที่เกี่ยวข้อง</span> <span id="drugName">Tacrolimus</span></p>
+
+            <button class="btn-report" id="viewReportBtn" data-translate="view-report">รายงานผล</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include barcode scanner library -->
+  <script src="https://unpkg.com/@ericblade/quagga2/dist/quagga.min.js"></script>
+</body>
+
+</html>

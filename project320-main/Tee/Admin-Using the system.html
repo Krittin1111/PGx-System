@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX System — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Admin-Using the system.css" />
+</head>
+
+<body>
+  <!-- ✅ ต้องมี .app ครอบและมีแค่สองลูก: aside.sidebar และ main.main -->
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brand-text">PGx System</div>
+      </div>
+
+      <nav class="menu">
+        <a class="menu-item active" href="#">รายชื่อผู้ใช้</a>
+        <a class="menu-item" href="#">การใช้งานระบบ</a>
+        <a class="menu-item" href="#">กิจกรรมการใช้งาน</a>
+        <a class="menu-item" href="#">ออกจากระบบ</a>
+      </nav>
+
+      <div class="access">Access : text</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1 class="title">แอดมิน</h1>
+        <div class="lang">
+          <svg class="globe" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c1.9 0 3.6.6 5 1.6H7A7.9 7.9 0 0112 4zm-7 8c0-.9.2-1.8.5-2.6h13c.3.8.5 1.7.5 2.6s-.2 1.8-.5 2.6H5.5A7.9 7.9 0 015 12zm7 8a7.9 7.9 0 01-5-1.6h10A7.9 7.9 0 0112 20z" />
+          </svg>
+          <button class="chip" type="button">EN<span>TH</span></button>
+        </div>
+      </header>
+
+      <section class="frame">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <strong>ตรวจสอบการแก้ไขย้อนหลัง</strong>
+            </div>
+
+          </div>
+
+          <div class="filters">
+
+            <label class="f f-name">
+              <span>ชื่อผู้ใช้งาน</span>
+              <input class="input" type="text" placeholder="Value">
+            </label>
+
+            <label class="f f-role">
+              <span>บทบาท</span>
+              <div class="selectwrap">
+                <select class="select">
+                  <option>ทั้งหมด</option>
+                  <option>แพทย์</option>
+                  <option>ผู้ดูแลระบบ</option>
+                  <option>เภสัชกร</option>
+                  <option>ผู้จัดการแลป</option>
+                  <option>ผู้ช่วยแลป</option>
+                  <option>นักชีวสารสนเทศ</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="f f-level">
+              <span>ระดับ</span>
+              <div class="selectwrap">
+                <select class="select">
+                  <option>ทั้งหมด</option>
+                  <option>แอดมิน</option>
+                  <option>ผู้ใช้</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="f f-action">
+              <span>การกระทำ</span>
+              <div class="selectwrap">
+                <select class="select">
+                  <option>ทั้งหมด</option>
+                  <option>เข้าสู่ระบบ</option>
+                  <option>ออกจากระบบ</option>
+                  <option>สร้างผู้ใช้รายใหม่</option>
+                  <option>ลบผู้ใช้ออกจากระบบ</option>
+                  <option>เพิ่มมาตราฐาน</option>
+                  <option>ลบมาตราฐาน</option>
+                  <option>เพิ่มข้อมูลผู้ป่วย</option>
+                  <option>นำเข้าใบสั่งตรวจ</option>
+                  <option>ปฏิเสธสิ่งส่งตรวจ</option>
+                  <option>รายงานผลแลป</option>
+                  <option>ดูรายงานผลแลป</option>
+                  <option>อนุมัติรายงานผลแลป</option>
+                  <option>แก้ไขรายงานผลแลป</option>
+                  <option>ส่งกลับรายงานผลแลป</option>
+                  <option>บันทึกผล IQC</option>
+                  <option>บันทึกผล EQC</option>
+                  <option>บันทึกผล I-LabQC</option>
+                  <option>แก้ไขบันทึกผล QC</option>
+                  <option>ลบบันทึกผล QC</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="f f-date">
+              <span>วันที่</span>
+              <input type="date" class="input date-input">
+            </label>
+
+
+            <label class="f f-date-to">
+              <span>ถึง</span>
+              <input type="date" class="input date-input">
+            </label>
+          </div>
+
+
+
+
+          <div class="table-wrap">
+            <table class="table">
+              <!-- คุมความกว้างแต่ละคอลัมน์ -->
+              <colgroup>
+                <col style="width: 90px"> <!-- วันที่ -->
+                <col style="width: 70px"> <!-- เวลา -->
+                <col style="width: 240px"> <!-- ชื่อผู้ใช้ -->
+                <col style="width: 120px"> <!-- ตำแหน่ง -->
+                <col style="width: 150px"> <!-- ระดับการเข้าถึง -->
+                <col style="width: 150px"> <!-- การกระทำ -->
+                <col style="width: 150px"> <!-- ที่กระทำ -->
+                <col style="width: auto"> <!-- หมายเหตุ (ยืดได้) -->
+              </colgroup>
+
+              <thead>
+                <tr>
+                  <th class="center">วันที่</th>
+                  <th class="center">เวลา</th>
+                  <th>ชื่อผู้ใช้</th>
+                  <th>ตำแหน่ง</th>
+                  <th>ระดับการเข้าถึง</th>
+                  <th>การกระทำ</th>
+                  <th>ที่กระทำ</th>
+                  <th>หมายเหตุ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- ตัวอย่างแถว -->
+                <tr>
+                  <td class="center">26/10/68</td>
+                  <td class="center">00:05</td>
+                  <td>นายหนึ่ง ลาคุนึ่ง</td>
+                  <td>แพทย์</td>
+                  <td>แอดมิน</td>
+                  <td>เข้าสู่ระบบ</td>
+                  <td>เข้าสู่ระบบ User</td>
+                  <td>ส่งผลการทดลองเลือด...</td>
+                </tr>
+                <tr>
+                  <td class="center">26/10/68</td>
+                  <td class="center">03:21</td>
+                  <td>นายสอง ลาคลัก...</td>
+                  <td>แพทย์</td>
+                  <td>ผู้ใช้</td>
+                  <td>อนุมัติผลแลบ</td>
+                  <td>แลบ XXX</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-------------------------------------------สร้างผู้ใช้ใหม่--------------->
+
+</body>
+
+</html>

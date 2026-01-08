@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PGX System — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/Admin-General-settings.css" />
+  <script src="js/shared-translations.js"></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brand-text">PGx System</div>
+      </div>
+
+      <nav class="menu">
+        <a class="menu-item" href="Admin.html" data-translate="user-list">รายชื่อผู้ใช้</a>
+        <a class="menu-item" href="Admin-Using the system.html" data-translate="system-usage">การใช้งานระบบ</a>
+        <a class="menu-item active" href="Admin-General-settings.html" data-translate="general-settings">การตั้งค่าทั่วไป</a>
+        <a class="menu-item" href="#" data-translate="logout" id="logoutBtn">ออกจากระบบ</a>
+      </nav>
+
+      <div class="access">Access : text</div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="topbar">
+        <h1 class="title" data-translate="admin-title">แอดมิน</h1>
+        <div class="top-controls">
+          <!-- Language Toggle Switch -->
+          <div class="language-toggle">
+              <div class="lang-switch" id="languageSwitch">
+                  <div class="lang-option left" data-lang="en">EN</div>
+                  <div class="lang-option right active" data-lang="th">TH</div>
+                  <div class="switch-slider"></div>
+              </div>
+          </div>
+          
+          <!-- Shutdown Button -->
+          <div class="shutdown-button">
+              <button type="button" id="shutdownBtn" class="shutdown-btn" onclick="window.close()" title="Close Application">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <line x1="12" y1="2" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+              </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Frame & Card -->
+      <section class="frame">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><strong data-translate="general-settings">การตั้งค่าทั่วไป</strong></div>
+          </div>
+
+          <div class="settings-body">
+
+            <div class="setting-block">
+              <h3 data-translate="logo-settings">การตั้งค่าโลโก้</h3>
+              <p class="subtext" data-translate="current-logo">รูปภาพโลโก้ปัจจุบัน <a href="#">PGXLogo31.png</a></p>
+              <p class="subhint" data-translate="logo-size-hint">รูปภาพที่ใช้ควรมีขนาด XPixel × XPixel</p>
+              <button class="btn-gray" data-translate="upload">อัปโหลด</button>
+            </div>
+
+            <div class="setting-block">
+              <h3 data-translate="certification-standards">การรับรองมาตรฐาน</h3>
+              <p class="subtext">ISO 15189:2022, XXXX 1234........</p>
+              <button class="btn-gray" onclick="window.location.href='Admin-Cert-settings.html'" data-translate="view-details">ดูข้อมูล</button>
+            </div>
+
+            <!-- <div class="footer">
+              <button class="btn-primary">ยืนยัน</button>
+              <button class="btn-danger">ยกเลิก</button>
+            </div> -->
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="js/admin-general-settings.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*{
+  box-sizing:border-box}
+    html,body{height:10%}
+    body{
+      margin:0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", Arial, sans-serif;
+      background: #ECF5FD;
+      color: var(--ink);
+    }
+
+/* กรอบเมนู */
+
+:root {
+  --bg: #ECF5FD;
+  --card: #ffffff;
+  --primary-hover: #7488FC;
+  --text-light: #898989;
+  --radius: 14px;
+}
+
+aside {
+  width: 280px;
+  height: 100vh;
+  background-color: var(--card);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;              /* 🔥 เพิ่มระยะห่างระหว่างแต่ละส่วน (brand / nav / logout) */
+  padding: 50px 25px;     /* 🔥 เพิ่มระยะรอบใน (ภายในกรอบ) */
+  font-size: 20px;
+  width: 300px;
+  height: 1450px;
+  background-color: #fff;
+  box-shadow: 6px 0 15px rgba(127, 148, 255, 0.3); /* เงาฟ้าอ่อน */
+  padding: 20px;
+}
+
+aside .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;            
+  font-weight: 700;
+  font-size: 30px;
+  margin-left: -35px;
+  font-family: "Kanit", sans-serif;
+  color: #0f1222;
+}
+aside .logo {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;           
+}
+
+aside nav a{
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 20px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+ }
+
+ aside nav a.active {
+  background-color: #7488FC;
+  color: white;
+  font-weight: 600;
+}
+ 
+aside nav a:hover {
+  background-color: var(--primary-hover);
+   color: white; 
+}
+
+/*หัวDashboard */
+
+main {
+  padding: 25px;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 350px 1fr;  /* ✅ ซ้ายเป็น sidebar ขวาเป็น main */
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7488FC, #cccede);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  /* ✅ ทำให้เป็น gradient text */
+}
+
+/* กล่องผู้ใช้ */
+.userbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2B395E;
+  padding: 8px 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(241, 238, 238, 0.08);
+}
+
+.userbox input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  min-width: 200px;
+  color: #f9f9f9;
+}
+
+.userbox input::placeholder {
+  color: #f9f9f9;              /* ✅ สีข้อความ placeholder */
+}
+
+.userbox .user-icon {
+  width: 50px;            /* ✅ ขนาดของรูปไอคอน */
+  height: 50px;
+  position: absolute;
+  right: 260px;
+  border-radius: 50%;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lang-btn {
+  border: none;
+  background: #dfe6f9;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.lang-btn.active {
+  background: #5a7cff;
+  color: #fff;
+}
+
+.user-input {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #1c2551;
+  color: #fff;
+}
+
+/* Content */
+.content {
+  background: #f5f9ff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.search-box {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+}
+
+.search-box button {
+  padding: 10px 16px;
+  border: none;
+  background: #5a7cff;
+  color: #fff;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+.table-section {
+  background: #1c2551;
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.table-section h3 {
+  margin-bottom: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #2f356b;
+}
+
+/* ==== สไตล์ของช่องสถานะ ==== */
+.status {
+  display: inline-block;
+  min-width: 120px;        /* 🔸 กำหนดความกว้างคงที่ */
+  text-align: center;      /* จัดกลางข้อความ */
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: white;
+  height: 32px;            /* 🔸 ความสูงคงที่ */
+  line-height: 20px;       /* ให้ข้อความอยู่ตรงกลาง */
+}
+
+/* 🔹 สีแต่ละสถานะ */
+.status.pending {
+  background-color: #ffb84d;
+}
+
+.status.approved {
+  background-color: #4CAF50;
+}
+
+.status.rejected {
+  background-color: #f44336;
+}
+
+/* ==== ปุ่มดำเนินการ ==== */
+.action-btn {
+  min-width: 120px;         /* 🔸 ขนาดเท่ากันทุกปุ่ม */
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* 🔹 สีของปุ่มตามสถานะ */
+.action-btn {
+  min-width: 130px;          /* ขนาดเท่ากันทุกปุ่ม */
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 🔸 ปุ่ม "ดำเนินการ" (รอดำเนินการ) */
+.action-btn.processing {
+  background-color: #FFB84D;
+}
+.action-btn.processing:hover {
+  background-color: #e6a240;
+}
+
+/* 🟢 ปุ่ม "อ่านผลแล้ว" (อนุมัติ) */
+.action-btn.done {
+  background-color: #4CAF50;
+}
+.action-btn.done:hover {
+  background-color: #43a047;
+}
+
+/* 🔴 ปุ่ม "แก้ไขผลตรวจ" (ไม่ผ่าน) */
+.action-btn.failed {
+  background-color: #E53935;
+}
+.action-btn.failed:hover {
+  background-color: #c62828;
+}
+
+/* เอฟเฟกต์เวลา hover ให้ยกขึ้นนิดนึง */
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+

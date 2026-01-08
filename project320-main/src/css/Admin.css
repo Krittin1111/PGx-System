@@ -1,0 +1,745 @@
+:root {
+    --bg: #e9f2f9;
+    --ink: #0f172a;
+    --muted: #8b95a7;
+    --panel: #ffffff;
+    --panel-head: #3f3f44;
+    --line: #d6def0;
+    --frame-outer: #e9f2f9;
+    --frame-inner: #cfe0ff;
+    --primary: #4f7fdc;
+    --radius: 18px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    font-family: "Prompt", sans-serif;
+    background: var(--bg);
+    color: var(--ink)
+}
+
+/* ===== LAYOUT: force two columns ===== */
+.app {
+    display: grid !important;
+    /* กันสไตล์อื่นมาทับ */
+    grid-template-columns: 320px minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #fff;
+    border-right: 2px solid var(--frame-inner);
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px
+}
+
+.logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #e6ecff, #bed1ff)
+}
+
+.brand-text {
+    font-weight: 800;
+    font-size: 20px
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 26px 0
+}
+
+.menu-item {
+    display: block;
+    padding: 16px 18px;
+    border-radius: 14px;
+    color: #7a879b;
+    text-decoration: none;
+    font-weight: 800;
+    width: 100%
+}
+
+.menu-item.active {
+    background: #cfe0ff;
+    color: #122c7a;
+    box-shadow: inset 0 0 0 2px #b7ccff
+}
+
+.access {
+    margin-top: auto;
+    color: #9aa5b6;
+    font-size: 13px
+}
+
+/* ==== FULL-WIDTH FRAME INSIDE .main (keep inner padding) ==== */
+:root {
+    --page-pad: 40px;
+}
+
+/* ค่าที่ใช้ใน .main อยู่แล้ว */
+
+.main {
+    padding: 28px var(--page-pad);
+}
+
+/* ดันกรอบให้ขยายออกไปเท่ากับ padding ของ .main */
+.main>.frame {
+    margin-left: calc(var(--page-pad) * -1);
+    margin-right: calc(var(--page-pad) * -1);
+    width: auto;
+    /* ใช้ความกว้างใหม่หลังหักลบ */
+    border-radius: 18px;
+    /* จะเอาโค้งไว้เหมือนเดิมก็ได้ */
+}
+
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px
+}
+
+.top-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Language Toggle */
+.language-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.lang-switch {
+    position: relative;
+    display: flex;
+    background: white;
+    border: 2px solid #9DAEFF;
+    border-radius: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    width: 80px;
+    height: 40px;
+}
+
+.lang-switch:hover {
+    border-color: #7f94ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.lang-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    transition: color 0.3s ease;
+    z-index: 2;
+}
+
+.lang-option.active {
+    color: white;
+}
+
+.switch-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #9DAEFF 0%, #7f94ff 100%);
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.lang-switch.en .switch-slider {
+    transform: translateX(0);
+}
+
+.lang-switch.th .switch-slider {
+    transform: translateX(100%);
+}
+
+/* Shutdown Button */
+.shutdown-button {
+    display: flex;
+    align-items: center;
+}
+
+.shutdown-btn {
+    background: white;
+    border: 2px solid #ff4757;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: #ff4757;
+}
+
+.shutdown-btn:hover {
+    background: #ff4757;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+}
+
+.shutdown-btn:active {
+    transform: translateY(0px);
+}
+
+.title {
+    margin: 0;
+    font-size: 46px
+}
+
+.lang {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.globe {
+    width: 28px;
+    height: 28px;
+    fill: #1f2937
+}
+
+.chip {
+    border: 1.6px solid var(--line);
+    background: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-weight: 800
+}
+
+.chip span {
+    margin-left: 2px
+}
+
+/* Card with double frame */
+.frame {
+    border: 3px solid var(--frame-outer);
+    border-radius: 18px;
+    padding: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card {
+    background: var(--panel);
+    border-radius: 14px;
+    border: 2px solid var(--frame-inner);
+    overflow: hidden;
+    width: 100%;
+
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: var(--panel-head);
+    color: #fff
+}
+
+.card-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 800
+}
+
+.sep {
+    opacity: .7
+}
+
+.btn-outline {
+    border: 2px solid #b3c8ff;
+    background: #fff;
+    color: #2040a6;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-weight: 800;
+    margin-left: auto;
+    /* ✅ ดันไปชิดขวา */
+}
+
+
+.btn-outline:hover {
+    background: #eff5ff
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: #fff
+}
+
+.f {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280
+}
+
+.input {
+    height: 36px;
+    min-width: 220px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0 12px
+}
+
+.selectwrap {
+    position: relative
+}
+
+.select {
+    appearance: none;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0 36px 0 12px;
+    min-width: 140px;
+    background: #fff
+}
+
+.chev {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    pointer-events: none
+}
+
+/* Table */
+.table-wrap {
+    padding: 12px 14px 18px
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0
+}
+
+.table th,
+.table td {
+    border: 1px solid var(--line);
+    padding: 12px 12px;
+    font-size: 14px
+}
+
+.table thead th {
+    background: #f6f9ff;
+    font-weight: 800
+}
+
+.center {
+    text-align: center
+}
+
+/* Responsive */
+@media (max-width:1080px) {
+    .app {
+        grid-template-columns: 260px 1fr
+    }
+
+    .title {
+        font-size: 36px
+    }
+}
+
+@media (max-width:760px) {
+    .app {
+        grid-template-columns: 1fr
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 0;
+        z-index: 3
+    }
+
+    .filters {
+        flex-wrap: wrap
+    }
+
+    .top-controls {
+        gap: 10px;
+    }
+
+    .lang-switch {
+        width: 70px;
+        height: 35px;
+    }
+
+    .shutdown-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .dialog-actions {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .action-buttons-right {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .btn-delete {
+        width: 100%;
+        justify-self: stretch;
+    }
+}
+
+/* ==== Modal ==== */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 60;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
+}
+
+.dialog {
+    position: relative;
+    margin: 64px auto;
+    max-width: 960px;
+    background: #fff;
+    border: 1px solid var(--frame-inner);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+    outline: none;
+}
+
+.dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #6c72a6;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 12px 12px 0 0;
+    font-weight: 800;
+}
+
+.icon-close {
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.icon-btn {
+    border: 0;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-btn:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+}
+
+.dialog-body {
+    padding: 24px 28px;
+}
+ 
+ 
+/* ✅ กำหนด layoutให้เป็น 3 คอลัมน์เหมือนภาพ */
+.dialog-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr; /* ชื่อ | นามสกุล | สิทธิ์ */
+  column-gap: 24px;
+  row-gap: 18px;
+}
+
+/* ✅ กำหนดตำแหน่งเอกสาร */
+.field.fn { grid-column: 1 / 2; }       /* ชื่อ */
+.field.ln { grid-column: 2 / 3; }       /* นามสกุล */
+.field.role { grid-column: 3 / 4; }     /* สิทธิ์ (ช่องใหญ่) */
+
+.field.access { grid-column: 1 / 3; }   /* ใต้ชื่อ-นามสกุล กว้าง 2 ช่อง */
+.field.email { grid-column: 3 / 4; }    /* ใต้สิทธิ์ */
+
+.field.pass { grid-column: 1 / 3; }     /* ใต้ระดับเข้าถึง */
+.field.confirm { grid-column: 3 / 4; }  /* ใต้ email */
+
+.field>span {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #2a2f3a;
+}
+
+/* แถบปุ่มด้านล่างของโมดอล */
+.dialog-actions{
+  grid-column: 1 / -1;            /* กินเต็มทุกคอลัมน์ของ grid */
+  display: flex;
+  justify-content: space-between; /* จัดให้ปุ่มลบอยู่ซ้าย ส่วนปุ่มอื่นอยู่ขวา */
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px 24px;        /* ← เพิ่มระยะขวา/ล่างให้ไม่ชิดขอบ */
+  border-top: 1px solid #eef2ff;  /* เส้นคั่นบาง ๆ ด้านบน (สวยขึ้น) */
+}
+
+.action-buttons-right {
+  display: flex;
+  gap: 12px;
+}
+
+/* ปุ่มโทนหลัก */
+.btn-primary{
+  background:#5b80ff;
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:10px 18px;
+  font-weight:800;
+}
+.btn-primary:hover{ filter:brightness(.95); }
+
+/* ปุ่มยกเลิก */
+.btn-cancel{
+  background:#fff;
+  color:#374151;
+  border:1px solid #d7ddea;
+  border-radius:10px;
+  padding:10px 16px;
+  font-weight:700;
+}
+.btn-cancel:hover{ background:#f9fafb; }
+
+/* ปุ่มลบ */
+.btn-delete{
+  background:#ef4444;
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:10px 16px;
+  font-weight:700;
+  transition: all 0.2s;
+}
+.btn-delete:hover{ 
+  background:#dc2626;
+  transform: translateY(-1px);
+}
+
+/* Input + Select */
+.dialog .input {
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0 12px;
+    width: 100%;
+}
+
+.dialog .select {
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0 36px 0 12px;
+    width: 100%;
+    appearance: none;
+    background: #fff;
+}
+
+.dialog .selectwrap {
+    position: relative;
+}
+
+.dialog .chev {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    pointer-events: none;
+}
+
+/* Alert system */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    animation: slideInRight 0.3s ease-out;
+}
+
+.alert-success { background: #10b981; }
+.alert-error { background: #ef4444; }
+.alert-info { background: #3b82f6; }
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Loading, Error, and Empty States */
+.loading-spinner, .error-state, .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    color: #6b7280;
+}
+
+.spinner-icon {
+    font-size: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.error-icon, .empty-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.error-message, .empty-message {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.error-details {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 12px;
+}
+
+.btn-retry {
+    background: #ef4444;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-retry:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+/* Filter Results Counter */
+.results-count {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 400;
+}
+
+/* Filter Input Enhancements */
+.filters input[type="text"] {
+    transition: all 0.2s ease;
+}
+
+.filters input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 127, 220, 0.1);
+    outline: none;
+}
+
+/* No Results State */
+.no-results-state {
+    text-align: center;
+    color: var(--muted);
+}
+
+.no-results-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.6;
+}
+
+.no-results-message {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+
+.no-results-suggestion {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
